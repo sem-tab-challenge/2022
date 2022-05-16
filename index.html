@@ -76,30 +76,100 @@ and we discuss issues risen during the evaluation rounds.</p>
 
 <br>
 
-
- <!--
 <a name="tasks"></a>
-<h2>Challenge Tasks</h2>
+<h2>Challenge Tracks</h2>
 
 
 <h3>Accuracy Track</h3>
 
-<p> 
-As in previous editions, SemTab includes the following tasks organised into several evaluation rounds:
-</p>
-
+The evaluation of systems regarding accuracy is similar to prior versions of the SemTab.<br>
+That is, to illustrate the accuracy of the submissions, we evaluate systems on typical multi-class classification metrics as detailed below.<br>
+In addition, we adopt the "cscore" for the CTA task to reflect the distance in the type hierarchy between the predicted column type and the ground truth semantic type.<br>
+We use AICrowd to collect the submissions and automatically conduct the evaluation, the page on AICrowd will provide more details regarding evaluation.<br>
+<br>
+Matching Tasks:
 <ul>
 <li><b>CTA Task</b>: Assigning a semantic type (a DBpedia class as fine-grained as possible) to a column.</li>
 <li><b>CEA Task</b>: Matching a cell to a Wikidata entity.</li>
 <li><b>CPA Task</b>: Assigning a KG property to the relationship between two columns.</li>
 </ul>
 
-<p>
+
+Matching Criteria:
+<ul>
+  <li>Average Precision</li>
+  <li>Average Recall</li>
+  <li>Average F1</li>
+  <li>Cscore</li>
+</ul>
+
+
+<h3>Datasets Track</h3>
+
+The data that table-to-Knowledge-Graph matching systems are trained and evaluated on, is critical for their accuracy and relevance.<br>
+We invite dataset submissions that provide challenging and accessible new datasets to advance the state-of-the-art of table-to-KG matching systems.<br>
+Preferably, these datasets provide tables along with their ground truth annotations for the CEA, CTA and CPA tasks.<br>
+The dataset may be general or specific to a certain domain.<br>
+<br>
+Submissions will be evaluated according to provide the following:
+<ul>
+  <li>Description of the data collection, curation, and annotation processes.</li>
+  <li>Availability of documentation with insights in the dataset content.</li>
+  <li>Publicly accessible link to the dataset (e.g. Zenodo) and its DOI.</li>
+  <li>Explanation of maintenance and long-term availability.</li>
+  <li>Clear description of the envisioned use-cases.</li>
+  <li>Application in which the dataset is used to solve an exemplar task.</li>
+</ul>
+
+For more tips on creating, documenting and publishing datasets can be found <a href="https://neurips.cc/Conferences/2022/CallForDatasetsBenchmarks" target="blank">here</a>.
+
+
+
+<h3>Artifacts Availability Badge</h3>
+
+New this year is the Artifacts Availability Badge which is applicable to the Accuracy Track as well as the Datasets Track.<br>
+The goal of this badge is to motivate authors to publish and document their systems, code, and data, so that others can use these artifacts and potentially reproduce or build on the results.<br>
+This badge is given, if all resources are verified to satisfy the below criteria.<br>
+<br>
+The criteria used to assess submissions (both accuracy and dataset submissions) are:
+<ul>
+  <li>Publicly accessible data (if applicable).</li>
+  <li>Publicly accessible source code.</li>
+  <li>Clear documentation of the code and data.</li>
+  <li>Open-source dependencies.</li>
+</ul>
+
+<br>
+
+<h2>Important Dates (tentative)</h2>
+
+Accuracy track systems:
+<ul>
+<li><b>April 28:</b> First call for challenge participants.</li>
+<li><b>June 1 - July 1:</b> Round 1. </li>
+<li><b>July 15 - August 14:</b> Round 2. </li>
+<li><b>August/early September:</b> Best participants in Rounds 1 and 2 are invited to present their results during the <a href="https://iswc2022.semanticweb.org/" target="blank">ISWC conference</a> and the 
+<a href="http://om2022.ontologymatching.org/" target="blank">Ontology Matching workshop</a>. </li>
+<li><b>September 15 - October 15:</b> Round 3.</li>
+</ul>
+
+Paper and artifact submissions (both tracks):
+<ul>
+  <li><b>October 20</b>: Paper submissions (via easychair).</li>
+  <li><b>October 25</b>: Ontology Matching workshop.</li>
+  <li><b>October 26-28</b>: Challenge Presentation and prize announcement.</li>
+  <li><b>November 15</b>: Final version papers (via easychair).</li>
+</ul>
+
+
+<!-- BELOW FROM 2020: -->
+
+<!-- <p>
 The challenge will be run with the support of the 
 <a href="https://www.aicrowd.com/challenges/semtab-2021" target="blank">AICrowd platform</a> and the <a href="https://bitbucket.org/disco_unimib/stiltool/" target="blank">STILTool system</a>.</p>
+ -->
 
-
-<h3>Datasets and tasks per round</h3>
+<!-- <h3>Datasets and tasks per round</h3>
 
 <h4>Round 1:</h4> 
 <ul>
@@ -134,9 +204,9 @@ The challenge will be run with the support of the
 <li><b>BioDivTab Datasets and targets:</b> <a href="./data/BioDivTab_CTA_CEA_WD_Round3.tar.gz" target="blank">tables of BioDivTab-CTA-WD and BioDivTab-CEA-WD</a>, <a href="./data/BioDivTab_CTA_WD_Round3_Targets.csv" target="blank">BioDivTab-CTA-WD targets</a>, <a href="./data/BioDivTab_CEA_WD_Round3_Targets.csv" target="blank">BioDivTab-CEA-WD targets</a>. (Knowledge Graph: "Live Edition" of Wikidata)</li>
 <li><b>GitTables Datasets and targets:</b> <a href="data/GitTables_CTA_DBP_SCH_Round3.tar.gz" target="blank">tables of GitTables-CTA-DBP and GitTables-CTA-SCH (one column by one Schema.org class such as schema:author and schema:URL)</a>, <a href="./data/GitTables_CTA_DBP_Round3_Targets.csv" target="blank">GitTables-CTA-DBP targets</a>, <a href="./data/GitTables_CTA_DBP_Round3_Labels.csv">GitTables-CTA-DBP labels (including DBpedia properties)</a>, <a href="data/GitTables_CTA_SCH_Round3_Targets.csv" target="blank">GitTables-CTA-SCH targets</a>, <a href="./data/GitTables_CTA_SCH_Round3_Labels.csv">GitTables-CTA-SCH labels (including properties and types from Schema.org)</a> </li>
 <li><b>AG (HardTable) R3 Datasets and targets:</b> <a href="./data/HardTablesR3_CTA_CEA_CPA_WD_Round3.tar.gz" target="blank">tables of HardTablesR3-CTA-WD, HardTablesR3-CEA-WD and HardTablesR3-CPA-WD</a>, <a href="./data/HardTablesR3_CTA_WD_Round3_Targets.csv" target="blank">HardTablesR3-CTA-WD targets</a>, <a href="./data/HardTablesR3_CEA_WD_Round3_Targets.csv" target="blank">HardTablesR3-CEA-WD targets</a>, <a href="./data/HardTablesR3_CPA_WD_Round3_Targets.csv" target="blank">HardTablesR3-CPA-WD targets</a>. (Knowledge Graph: Wikidata (version: <a href="https://dumps.wikimedia.org/wikidatawiki/entities/20210823/">20210823</a>))</li>
-</ul>
+</ul> -->
 
-<h3>Usability Track</h3>
+<!-- <h3>Usability Track</h3>
 This new track addresses a pain point in the community regarding a lack of publicly available easy-to-use and generic solution that will address the needs of a variety of applications and settings. 
 We will devise a clear scoring mechanism to rank every participant's solution in terms of several usability criteria as judged by a review panel, for example:
 <ol>
@@ -145,10 +215,10 @@ We will devise a clear scoring mechanism to rank every participant's solution in
 <li>Does the solution require extensive training and tuning for a new application/domain?</li>
 <li>Is the solution offered as a public service?</li>
 <li>Does the solution include a well-designed user interface?</li>
-</ol>
+</ol> -->
 
 
-<h3>Applications Track</h3>
+<!-- <h3>Applications Track</h3>
 
 <p>This new track aims at addressing applications in real-world settings that take advantage of the output of the matching systems.
 Challenging dataset proposals are also more than welcome.</p>
@@ -159,25 +229,14 @@ Examples include but are not limited to:
 <li>Applications in generic data discovery and exploration.</li>
 <li>Applications of table understanding for scientific corpora.</li>
 <li>Applications in feature engineering and automated machine learning.</li>
-</ol>
+</ol> -->
 
-<p>
+<!-- <p>
 <b>Bio-Track:</b> Due to advances in biological research techniques, new data is constantly being produced in the biomedical domain and it is commonly published unstructured or tabular formats. This data is not trivial to integrate semantically due not only to its sheer amount but also the complexity of the biological relations between entities. Specifically, for tabular data annotation, the representation of data can have a significant impact in performance since each entity can be represented by alphanumeric codes (e.g., chemical formulas or gene names) or even have multiple synonyms. Therefore, the domain would greatly benefit from automated methods to map entities, entity types and properties to existing datasets to speed-up the process of integrating new data in the domain.
-</p>
+</p> -->
 
 <br/>
- -->
 
-
-<h2>Important Dates (tentative)</h2>
-
-<ul>
-<li><b>April 28:</b> First call for challenge participants.</li>
-<li><b>June 1 - July 1:</b> Round 1. </li>
-<li><b>July 15 - August 14:</b> Round 2. </li>
-<li><b>August/early September:</b> Best participants in Rounds 1 and 2 are invited to present their results during the <a href="https://iswc2022.semanticweb.org/" target="blank">ISWC conference</a> and the 
-<a href="http://om2022.ontologymatching.org/" target="blank">Ontology Matching workshop</a>. </li>
-<li><b>September 15 - October 15:</b> Round 3.</li>
 <!--
 <li><b>October 21:</b> System paper submissions (via <a href="https://easychair.org/conferences/?conf=semtab2022" target="blank">easychair</a>).</li>
 <li><b>October 25:</b> <a href="http://om2022.ontologymatching.org/" target="blank">Ontology Matching workshop</a>.</li>
@@ -186,31 +245,20 @@ Examples include but are not limited to:
  --> 
 
 
-</ul>
+<h2><a name="papers">Paper guidelines</a></h2>
 
-
-<br/>
-
-<h2><a name="papers">System Papers</a></h2>
-
-<p>We encourage participants to submit a system paper using easychair.  
+<p>We invite participants in the accuracy track as well as the dataset track to submit a system paper using easychair.
 The paper should be no more than 12 pages long (excluding references) and formatted using the 
 <a href="https://www.overleaf.com/latex/templates/template-for-submissions-to-ceur-workshop-proceedings-ceur-ws-dot-org/wqyfdgftmcfw" target="blank">CEUR Latex template</a> or the 
 <a href="https://ceurws.wordpress.com/2020/03/31/ceurws-publishes-ceurart-paper-style/" target="blank">CEUR Word template</a>.
  
 <a href="http://www.springer.com/lncs" target="blank">LNCS Style</a>.
-System papers will be reviewed by 1-2 challenge organisers.</p>
+Papers will be reviewed by 1-2 challenge organisers.</p>
  
 <p>
-Accepted system papers will be published as a volume of <a href="http://ceur-ws.org/" target="blank">CEUR-WS</a>. 
- By submitting a paper, the authors accept the CEUR-WS publishing rules.
+Accepted papers will be published as a volume of <a href="http://ceur-ws.org/" target="blank">CEUR-WS</a>. 
+By submitting a paper, the authors accept the CEUR-WS publishing rules.
 </p>
-
-
-
-
-
-
 
 
 <br />
@@ -233,11 +281,9 @@ Accepted system papers will be published as a volume of <a href="http://ceur-ws.
 <a href="https://fusion.cs.uni-jena.de/fusion/members/nora-abdelmageed/" target="blank">Nora Abdelmageed</a> (University of Jena), and
 <a href="https://madelonhulsebos.github.io/" target="blank">Madelon Hulsebos</a> (University of Amsterdam, Sigma Computing).
 
-
  
 If you have any problems working with the datasets or any suggestions 
 related to this challenge, do not hesitate to contact us via the <a href="https://groups.google.com/g/sem-tab-challenge">discussion group</a>.</p>
-
 
 
 <br />
@@ -254,6 +300,9 @@ The challenge is currently supported by the <a href="http://sirius-labs.no/" tar
 <p>
 BiodivTab is credited to Nora Abdelmageed, Sirko Schindler, Birgitta K&ouml;nig-Ries, Heinz Nixdorf Chair for Distributed Information Systems, Friedrich Schiller University Jena, Germany.
 The tables provided in this challenge are based on real biodiversity research datasets, but have been adapted for the challenge. In the form provided here, they may be used for the challenge, only. 
+</p>
+
+<p>
 Any publication on challenge results needs to contain citations of the underlying datasets.  
 </p>
 
