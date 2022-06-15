@@ -84,7 +84,7 @@
       </div>
     </nav>
     <!-- <div class="alert alert-warning" role="alert">
-      <b>News (09/03/2022):</b> The <a class="alert-link" href="http://ceur-ws.org/Vol-3103/" target="blank">SemTab 2021 proceedings</a> are out. <a href="#results" class="alert-link">Results</a> and <a href="#gt" class="alert-link">ground</a> truths are available. Back to <a href="../index.html">other SemTab editions</a>. 
+      <b>News (09/03/2022):</b> The <a class="alert-link" href="http://ceur-ws.org/Vol-3103/" target="blank">SemTab 2021 proceedings</a> are out. <a href="#results" class="alert-link">Results</a> and <a href="#gt" class="alert-link">ground</a> truths are available. Back to <a href="../index.html">other SemTab editions</a>.
     </div> -->
     <div class="container-fluid">
       <div class="row">
@@ -324,7 +324,7 @@
           <!-- BELOW FROM 2020: -->
 
           <!-- <p>
-      The challenge will be run with the support of the 
+      The challenge will be run with the support of the
       <a href="https://www.aicrowd.com/challenges/semtab-2021" target="blank">AICrowd platform</a> and the <a href="https://bitbucket.org/disco_unimib/stiltool/" target="blank">STILTool system</a>.</p>
        -->
 
@@ -414,15 +414,15 @@
             >
               <h3>Column Type Annotation by Wikidata (CTA-DBP)</h2>
               <p>
-                This is a task of ISWC 2021 "Semantic Web Challenge on Tabular Data to Knowledge Graph Matching".  
+                This is a task of ISWC 2021 "Semantic Web Challenge on Tabular Data to Knowledge Graph Matching".
                 It's to annotate an entity column (i.e., a column composed of entity mentions) in a table with types from Wikidata (version: <a href="https://dumps.wikimedia.org/wikidatawiki/entities/20210628/">20210628</a>)
               </p>
               <h4>Task Description</h4>
               <p>
-                The task is to annotate each entity column by items of Wikidata as its type. 
-                Each column can be annotated by multiple types: 
-                the one that is as fine grained as possible and correct to all the column cells, is regarded as a <strong>perfect annotation</strong>; 
-                the one that is the ancestor of the perfect annotation is regarded as an <strong>okay annotation</strong>; 
+                The task is to annotate each entity column by items of Wikidata as its type.
+                Each column can be annotated by multiple types:
+                the one that is as fine grained as possible and correct to all the column cells, is regarded as a <strong>perfect annotation</strong>;
+                the one that is the ancestor of the perfect annotation is regarded as an <strong>okay annotation</strong>;
                 others are regarded as <strong>wrong annotations</strong>.
               </p>
               <p>
@@ -458,23 +458,49 @@
 
               <h4>Evaluation Criteria</h4>
               <p>
-                We encourage one perfect annotation, and at same time score one of its ancestors (okay annotation). Thus we calculate Approximate Precision (APrecision), Approximate Recall (ARecall), and Approximate F1 Score (AF1):
+                We encourage one perfect annotation, and at same time score one of its ancestors (okay annotation). Thus we calculate Approximate Precision (\(APrecision\)), Approximate Recall (\(ARecall\)), and Approximate F1 Score (\(AF1\)):
+
+                \[APrecision = {\sum_{a \in all\ annotations}g(a) \over all\ annotations\ \#}\]
+
+                \[ARecall = {\sum_{col \in all\ target\ columns}(max\_annotation\_score(col)) \over all\ target\ columns\ \#}\]
+
+                \[AF1 = {2 \times APrecision \times ARecall \over APrecision + ARecall}\]
+
               </p>
               <p>
                 Notes:
-                
+
                 <ol>
                   <li>
                     # denotes the number.
                   </li>
                   <li>
-                    g(a) returns the full score 1.0 if a is a perfect annotation, returns 0.8d(a) if a is an ancestor of the perfect annotation and its depth to the perfect annotation d(a) is not larger than 5,  returns 0.7d(a) if a is a descendent of the perfect annotation and its depth to the perfect annotation d(a) is not larger than 3, and returns 0 otherwise. E.g., d(a)=1 if a is a parent of the perfect annotation, and d(a)=2 if a is a grandparent of the perfect annotation.
+                    \(
+                      g(a) =
+                      \begin{cases}
+                      1.0, & \text{ if } a \text{ is a perfect annotation} \\
+                      0.8^{d(a)}, & \text{ if } a \text{ is an ancestor of the perfect annotation and }  d(a) < 5 \\
+                      0.7^{d(a)}, &  \text{ if } a \text{ is a descendent of the perfect annotation and } d(a) < 3 \\
+                      0, & otherwise
+                      \end{cases}
+                    \)
+                    <p>
+                    where \(d(a)\) is the depth to the perfect annotation.
+                    E.g., \(d(a)=1\) if \(a\) is a parent of the perfect annotation, and \(d(a)=2\) if \(a\) is a grandparent of the perfect annotation.
+                    </p>
                   </li>
                   <li>
-                    max_annotation_score(col) returns g(a) if col has an annotation a, and 0 of col has no annotation.
+                    \(
+                      max\_annotation\_score(col) =
+                      \begin{cases}
+                      g(a), & \text{ if } col \text{ has an annotation } a \\
+                      0, & \text{ if } col \text{ has no annotation }
+                      \end{cases}
+
+                    \)
                   </li>
                   <li>
-                    AF1 is used as the primary score, and APrecision is used as the secondary score.
+                    \(AF1\) is used as the primary score, and \(APrecision\) is used as the secondary score.
                   </li>
                   <li>
                     A cell may have multiple equivalent Wikidata items as its GT (e.g., redirected pages Q20514736 and Q852446). For an annotated entity, our evaluator will calculate the score with each GT entity and select the maximum score.
@@ -483,10 +509,10 @@
               </p>
 
               <h4>Submission</h4>
-              Participants can make multiple submissions per day in Round #1. 
+              Participants can make multiple submissions per day in Round #1.
               However, only the latest submission of each team will be evaluated on every Friday.
 
-                <!-- <h4>Round 1</h4> 
+                <!-- <h4>Round 1</h4>
               <ul>
               <li><b>Knowledge Graphs:</b> DBPedia (version: <a href="http://downloads.dbpedia.org/wiki-archive/downloads-2016-10.html">2016-10</a>) and Wikidata (version: <a href="https://doi.org/10.5281/zenodo.6153449">20210828</a>)</li>
               <li><b>Datasets and targets:</b> <a href="./data/tables_CTA_CEA_Round1.tar.gz" target="blank">tables of CTA-DBP and CEA-DBP</a>, <a href="./data/CTA_DBP_Round1_Targets.csv" target="blank">CTA-DBP targets</a>, <a href="./data/CEA_DBP_Round1_Targets.csv" target="blank">CEA-DBP targets</a>, <a href="./data/tables_CTA_CEA_WD_Round1.tar.gz" target="blank">tables of CTA-WD and CEA-WD</a>, <a href="./data/CTA_WD_Round1_Targets.csv">CTA-WD targets</a>, <a href="./data/CEA_WD_Round1_Targets.csv">CEA-WD targets</a>.</li>
@@ -533,7 +559,7 @@
               TBD
             </div>
           </div>
-          <!--       
+          <!--
       <h4>Round 2: </h4>
       <ul>
       <li><b>Knowledge Graphs:</b> Wikidata (version: <a href="https://doi.org/10.5281/zenodo.6153449">20210828</a>)</li>
@@ -546,9 +572,9 @@
       <li><b>HardTable-CEA-WD Task</b>: Assigning a Wikidata entity to a cell. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/hardtable-cell-entity-annotation-by-wikidata-hardtable-cea-wd">See AIcrowd page</a>.</li>
       <li><b>HardTable-CPA-WD Task</b>: Assigning a Wikidata property to a column pair (order matters). <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/hardtable-column-property-annotation-by-wikidata-hardtable-cpa-wd">See AIcrowd page</a>.</li>
       </ul>
-      
+
       <br>
-      
+
       <h4> Round 3: </h4>
       <ul>
       <li><b>Knowledge Graphs:</b> Schema.org (version: <a href="https://gittables.github.io/">May 2021</a>),  DBPedia (version: <a href="http://downloads.dbpedia.org/wiki-archive/downloads-2016-10.html">2016-10</a>), Wikidata (version: <a href="https://doi.org/10.5281/zenodo.6153449">20210828</a>)</li>
@@ -558,7 +584,7 @@
       </ul> -->
 
           <!-- <h3>Usability Track</h3>
-      This new track addresses a pain point in the community regarding a lack of publicly available easy-to-use and generic solution that will address the needs of a variety of applications and settings. 
+      This new track addresses a pain point in the community regarding a lack of publicly available easy-to-use and generic solution that will address the needs of a variety of applications and settings.
       We will devise a clear scoring mechanism to rank every participant's solution in terms of several usability criteria as judged by a review panel, for example:
       <ol>
       <li>Is the solution open-source?</li>
@@ -569,12 +595,12 @@
       </ol> -->
 
           <!-- <h3>Applications Track</h3>
-      
+
       <p>This new track aims at addressing applications in real-world settings that take advantage of the output of the matching systems.
       Challenging dataset proposals are also more than welcome.</p>
-      
-      
-      Examples include but are not limited to: 
+
+
+      Examples include but are not limited to:
       <ol>
       <li>Applications in generic data discovery and exploration.</li>
       <li>Applications of table understanding for scientific corpora.</li>
@@ -584,7 +610,7 @@
           <!-- <p>
       <b>Bio-Track:</b> Due to advances in biological research techniques, new data is constantly being produced in the biomedical domain and it is commonly published unstructured or tabular formats. This data is not trivial to integrate semantically due not only to its sheer amount but also the complexity of the biological relations between entities. Specifically, for tabular data annotation, the representation of data can have a significant impact in performance since each entity can be represented by alphanumeric codes (e.g., chemical formulas or gene names) or even have multiple synonyms. Therefore, the domain would greatly benefit from automated methods to map entities, entity types and properties to existing datasets to speed-up the process of integrating new data in the domain.
       </p> -->
-          <!-- 
+          <!--
           <br /> -->
 
           <!--
@@ -662,7 +688,7 @@
             (SUPSI),
             <a href="https://juansequeda.com/" target="blank">Juan Sequeda</a>
             (data.world),
-            <!--<a href="https://danielapoliveira.github.io/" target="blank">Daniela Oliveira</a> (Universidade de Lisboa), 
+            <!--<a href="https://danielapoliveira.github.io/" target="blank">Daniela Oliveira</a> (Universidade de Lisboa),
       <a href="http://www.di.fc.ul.pt/~catiapesquita/" target="blank">Catia Pesquita</a> (Universidade de Lisboa),
       -->
             <a
@@ -706,10 +732,10 @@
           <!--</p>-->
 
           <!-- <br /> -->
-        
-        
-        
-        
+
+
+
+
         </div>
         <div class="col-md-2 col-3 vstack gap-3">
           <a href="http://sirius-labs.no/" target="blank">
@@ -752,7 +778,7 @@
     <!-- <div class="header"> -->
     <!--
 <div class="yellowbar">
-<b>News (09/03/2022):</b> The <a href="http://ceur-ws.org/Vol-3103/" target="blank">SemTab 2021 proceedings</a> are out. <a href="#results">Results</a> and <a href="#gt">ground</a> truths are available. Back to <a href="../index.html">other SemTab editions</a>. 
+<b>News (09/03/2022):</b> The <a href="http://ceur-ws.org/Vol-3103/" target="blank">SemTab 2021 proceedings</a> are out. <a href="#results">Results</a> and <a href="#gt">ground</a> truths are available. Back to <a href="../index.html">other SemTab editions</a>.
 </div>
 -->
 
@@ -880,5 +906,7 @@
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
       crossorigin="anonymous"
     ></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
   </body>
 </html>
