@@ -1,0 +1,18 @@
+.title {
+    margin: 15px auto 0;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.title::before {
+    background-color: var(--bs-secondary);
+    content: '';
+    height: 4px;
+    /*left:50%;*/
+    margin-left: -20px;
+    position: absolute;
+    bottom: 20px;
+    width: 20%;
+    min-width: 80px;
+    max-width: 300px;
+}
