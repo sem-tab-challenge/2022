@@ -167,9 +167,7 @@
             In addition, we adopt the "cscore" for the CTA task to reflect the
             distance in the type hierarchy between the predicted column type and
             the ground truth semantic type.<br/>
-            We use AICrowd to collect the submissions and automatically conduct
-            the evaluation, the page on AICrowd will provide more details
-            regarding evaluation.<br/>
+            <br/>
             <br/>
             Matching Tasks:
             <ul>
@@ -389,15 +387,18 @@
                         aria-labelledby="round1-cta-wd-tab"
                         tabindex="0"
                 >
-                    <h3>Column Type Annotation by Wikidata (CTA-DBP)</h3>
+                    <h4>Column Type Annotation by Wikidata (CTA-WD)</h4>
                     <p>
-                        This is a task of ISWC 2021 "Semantic Web Challenge on Tabular Data to Knowledge Graph
+                        This is a task of ISWC 2022 "Semantic Web Challenge on Tabular Data to Knowledge Graph
                         Matching".
                         It's to annotate an entity column (i.e., a column composed of entity mentions) in a table with
-                        types from Wikidata (version: <a
-                            href="https://dumps.wikimedia.org/wikidatawiki/entities/20210628/">20210628</a>)
+                        types from <strong>Wikidata</strong>
+                        (version: <a href="https://zenodo.org/record/6643443">20220521</a>) <br>
+                        <i class="bi bi-lightbulb-fill" style="color: var(--bs-yellow)"></i>
+                        Notes: participants may use the public Wikidata endpoint (or its API) since the above dump is
+                        very recent.
                     </p>
-                    <h4>Task Description</h4>
+                    <h5>Task Description</h5>
                     <p>
                         The task is to annotate each entity column by items of Wikidata as its type.
                         Each column can be annotated by multiple types:
@@ -410,7 +411,7 @@
                     <p>
                         The annotation can be a normal entity of Wikidata, with the prefix of
                         http://www.wikidata.org/entity/, such as http://www.wikidata.org/entity/Q8425. Each column
-                        should be annotated by at most one item. A perfect annotation is encouraged with a full score,
+                        should be annotated by <strong>at most one item</strong>. A perfect annotation is encouraged with a full score,
                         while an okay annotation can still get a part of the score. Example:
                         "KIN0LD6C","0","http://www.wikidata.org/entity/Q8425". Please use the prefix of
                         http://www.wikidata.org/entity/ instead of the URL prefix https://www.wikidata.org/wiki/.
@@ -441,20 +442,35 @@
                     </ol>
 
 
-                    <h4>Datasets</h4>
-                    <p>
-                        Table set for Round #1:
-                        <a href="#">Tables</a>,
-                        <a href="#">Target Columns</a>
-                    </p>
+                    <h5>Dataset</h5>
+                    <dl class="row">
+                        <dt class="col-sm-3">Link</dt>
+                        <dd class="col-sm-9"><a href="#" target="_blank">Round #1 Dataset</a></dd>
 
-                    <p>
-                        Data Description: One table is stored in one CSV file. Each line corresponds to a table row. The
-                        first row may either be the table header or content. The target columns for annotation are saved
-                        in a CSV file
-                    </p>
+                        <dt class="col-sm-3">Description</dt>
+                        <dd class="col-sm-9">
+                            <p>The dataset contains:</p>
+                            <ul>
+                                <li>evaluator codes (CTA_WD_Evaluator.py)</li>
+                                <li>the validation set (DataSets/HardTablesR1/Valid/gt,
+                                    DataSets/HardTablesR1/Valid/tables)
+                                </li>
+                                <li>the testing set (DataSets/HardTablesR1/Test/tables,
+                                    DataSets/HardTablesR1/Test/target)
+                                </li>
+                            </ul>
+                        </dd>
 
-                    <h4>Evaluation Criteria</h4>
+                        <dt class="col-sm-3">Format</dt>
+                        <dd class="col-sm-9">
+                            One table is stored in one CSV file. Each line corresponds to a table row. The
+                            first row may either be the table header or content. The target columns for annotation are
+                            saved
+                            in a CSV file.
+                        </dd>
+                    </dl>
+
+                    <h5>Evaluation Criteria</h5>
                     <p>
                         We encourage one perfect annotation, and at same time score one of its ancestors (okay
                         annotation). Thus we calculate Approximate Precision (\(APrecision\)), Approximate Recall
@@ -513,9 +529,9 @@
                         </li>
                     </ol>
 
-                    <h4>Submission</h4>
-                    Participants can make multiple submissions per day in Round #1.
-                    However, only the latest submission of each team will be evaluated on every Friday.
+                    <h5>Submission</h5>
+                    Participants can test and develop their systems on the given ground truth (validation set).
+                    They can weekly <a href="#" target="_blank"> upload </a> their annotations corresponding to the targets (test set).
 
                     <!-- <h4>Round 1</h4>
                       <ul>
@@ -534,7 +550,117 @@
                         aria-labelledby="round1-cea-wd-tab"
                         tabindex="0"
                 >
-                    TBD
+                    <h4>Cell Entity Annotation by Wikidata (CEA-WD)</h4>
+                    <p>
+                        This is a task of ISWC 2022 "Semantic Web Challenge on Tabular Data to Knowledge Graph
+                        Matching".
+                        It is to annotate column cells (entity mentions) in a table with entities of
+                        <strong>Wikidata</strong>
+                        (version: <a href="https://zenodo.org/record/6643443">20220521</a>) <br>
+                        <i class="bi bi-lightbulb-fill" style="color: var(--bs-yellow)"></i>
+                        Notes: participants may use the public Wikidata endpoint (or its API) since the above dump is
+                        very recent.
+                    </p>
+                    <h5>Task Description</h5>
+                    <p>
+                        The task is to annotate each target cell with an entity of Wikidata.
+                        Each submission should contain the annotation of the target cell. One cell can be annotated by
+                        one entity with the prefix of http://www.wikidata.org/entity/. Any of the equivalent entities of
+                        the ground truth entity are regarded as correct. Case is NOT sensitive.
+                    </p>
+                    <p>
+                        The submission file should be in CSV format.
+                        Each line should contain the annotation of one cell which is identified by a table id, a column
+                        id and a row id.
+                        Namely one line should have four fields: "Table ID", "Row ID", "Column ID" and "Entity IRI".
+                        Each cell should be annotated by <strong>at most one entity</strong>.
+                        The headers should be excluded from the submission file.
+                        Here is an example: "OHGI1JNY","32","1","http://www.wikidata.org/entity/Q5484".
+                        Please use the prefix of http://www.wikidata.org/entity/ instead of
+                        https://www.wikidata.org/wiki/ which is the prefix of the Wikidata page URL.
+                    </p>
+
+                    Notes:
+                    <ol>
+                        <li>
+                            Table ID does not include filename extension; make sure you remove the .csv extension from
+                            the filename.
+                        </li>
+                        <li>
+                            Column ID is the position of the column in the table file, starting from 0, i.e., first
+                            column's ID is 0.
+                        </li>
+                        <li>
+                            Row ID is the position of the row in the table file, starting from 0, i.e., first row's ID
+                            is 0.
+                        </li>
+                        <li>
+                            One submission file should have NO duplicate lines for one cell.
+                        </li>
+                        <li>
+                            Annotations for cells out of the target cells are ignored.
+                        </li>
+                    </ol>
+
+
+                    <h5>Dataset</h5>
+                    <dl class="row">
+                        <dt class="col-sm-3">Link</dt>
+                        <dd class="col-sm-9"><a href="#" target="_blank">Round #1 Dataset</a></dd>
+
+                        <dt class="col-sm-3">Description</dt>
+                        <dd class="col-sm-9">
+                            <p>The dataset contains:</p>
+                            <ul>
+                                <li>evaluator codes (CEA_WD_Evaluator.py)</li>
+                                <li>the validation set (DataSets/HardTablesR1/Valid/gt,
+                                    DataSets/HardTablesR1/Valid/tables)
+                                </li>
+                                <li>the testing set (DataSets/HardTablesR1/Test/tables,
+                                    DataSets/HardTablesR1/Test/target)
+                                </li>
+                            </ul>
+                        </dd>
+
+                        <dt class="col-sm-3">Format</dt>
+                        <dd class="col-sm-9">
+                            One table is stored in one CSV file. Each line corresponds to a table row. The first row may
+                            either be the table header or content. The target cells for annotation are saved in a CSV
+                            file.
+                        </dd>
+                    </dl>
+
+                    <h5>Evaluation Criteria</h5>
+                    <p>
+                        Precision, Recall and F1 Score are calculated:
+
+                        \[Precision = {{correct\_annotations \#} \over {submitted\_annotations \#}}\]
+
+                        \[Recall = {{correct\_annotations \#} \over {ground\_truth\_annotations \#}}\]
+
+                        \[F1 = {2 \times Precision \times Recall \over Precision + Recall}\]
+
+                    </p>
+
+                    Notes:
+
+                    <ol>
+                        <li>
+                            # denotes the number.
+                        </li>
+                        <li>
+                            \(F1\) is used as the primary score, and \(Precision\) is used as the secondary score.
+                        </li>
+                        <li>
+                            One target cell, one ground truth annotation, i.e., # ground truth annotations = # target
+                            cells. The ground truth annotation has already covered all equivalent entities (e.g., wiki
+                            page redirected entities); the ground truth is hit if one of its equivalent entities is hit.
+                        </li>
+                    </ol>
+
+                    <h5>Submission</h5>
+                    Participants can test and develop their systems on the given ground truth (validation set).
+                    They can weekly <a href="#" target="_blank"> upload </a> their annotations corresponding to the targets (test set).
                 </div>
                 <div
                         class="tab-pane fade"
@@ -543,7 +669,112 @@
                         aria-labelledby="round1-cpa-wd-tab"
                         tabindex="0"
                 >
-                    TBD
+                    <h4>Column Property Annotation by Wikidata (CPA-WD)</h4>
+                    <p>
+                        This is a task of ISWC 2022 "Semantic Web Challenge on Tabular Data to Knowledge Graph
+                        Matching".
+                        It is to annotate column relationships in a table with properties of
+                        <strong>Wikidata</strong>
+                        (version: <a href="https://zenodo.org/record/6643443">20220521</a>) <br>
+                        <i class="bi bi-lightbulb-fill" style="color: var(--bs-yellow)"></i>
+                        Notes: participants may use the public Wikidata endpoint (or its API) since the above dump is
+                        very recent.
+                    </p>
+                    <h5>Task Description</h5>
+                    <p>
+                        The task is to annotate each column pair with a property of Wikidata.
+                        Each submission should contain an annotation of a target column pair. Note the order of the two
+                        columns matters. The annotation property should start with the prefix of
+                        http://www.wikidata.org/prop/direct/. Case is NOT sensitive.
+                    </p>
+                    <p>
+                        The submission file should be in CSV format.
+                        Each line should contain the annotation of two columns which is identified by a table id, column
+                        id one and column id two.
+                        Namely one line should have four fields: "Table ID", "Column ID 1", "Column ID 2" and "Property
+                        IRI".
+                        Each column pair should be annotated by <strong>at most one property</strong>.
+                        The headers should be excluded from the submission file.
+                        Here is an example: "OHGI1JNY","0","1","http://www.wikidata.org/prop/direct/P702".
+                        Please use the prefix of http://www.wikidata.org/prop/direct/ instead of
+                        https://www.wikidata.org/wiki/ which is the prefix of the Wikidata page URL.
+                    </p>
+
+                    Notes:
+                    <ol>
+                        <li>
+                            Table ID does not include filename extension; make sure you remove the .csv extension from
+                            the filename.
+                        </li>
+                        <li>
+                            Column ID is the position of the column in the table file, starting from 0, i.e., first
+                            column's ID is 0.
+                        </li>
+                        <li>
+                            One submission file should have NO duplicate lines for one column pair.
+                        <li>
+                            Annotations for column pairs out of the targets are ignored.
+                        </li>
+                    </ol>
+
+
+                    <h5>Dataset</h5>
+                    <dl class="row">
+                        <dt class="col-sm-3">Link</dt>
+                        <dd class="col-sm-9"><a href="#" target="_blank">Round #1 Dataset</a></dd>
+
+                        <dt class="col-sm-3">Description</dt>
+                        <dd class="col-sm-9">
+                            <p>The dataset contains:</p>
+                            <ul>
+                                <li>evaluator codes (CPA_WD_Evaluator.py)</li>
+                                <li>the validation set (DataSets/HardTablesR1/Valid/gt,
+                                    DataSets/HardTablesR1/Valid/tables)
+                                </li>
+                                <li>the testing set (DataSets/HardTablesR1/Test/tables,
+                                    DataSets/HardTablesR1/Test/target)
+                                </li>
+                            </ul>
+                        </dd>
+
+                        <dt class="col-sm-3">Format</dt>
+                        <dd class="col-sm-9">
+                            One table is stored in one CSV file. Each line corresponds to a table row. The first row may
+                            either be the table header or content. The target cells for annotation are saved in a CSV
+                            file.
+                        </dd>
+                    </dl>
+
+                    <h5>Evaluation Criteria</h5>
+                    <p>
+                        Precision, Recall and F1 Score are calculated:
+
+                        \[Precision = {{correct\_annotations \#} \over {submitted\_annotations \#}}\]
+
+                        \[Recall = {{correct\_annotations \#} \over {ground\_truth\_annotations \#}}\]
+
+                        \[F1 = {2 \times Precision \times Recall \over Precision + Recall}\]
+
+                    </p>
+
+                    Notes:
+
+                    <ol>
+                        <li>
+                            # denotes the number.
+                        </li>
+                        <li>
+                            \(F1\) is used as the primary score, and \(Precision\) is used as the secondary score.
+                        </li>
+                        <li>
+                            One target column pair, one ground truth annotation, i.e., # ground truth annotations = #
+                            target column pairs.
+                        </li>
+                    </ol>
+
+                    <h5>Submission</h5>
+                    Participants can test and develop their systems on the given ground truth (validation set).
+                    They can weekly <a href="#" target="_blank"> upload </a> their annotations corresponding to the targets (test set).
                 </div>
                 <div
                         class="tab-pane fade"
