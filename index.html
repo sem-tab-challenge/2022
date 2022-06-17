@@ -452,11 +452,13 @@
                             <p>The dataset contains:</p>
                             <ul>
                                 <li>evaluator codes (CTA_WD_Evaluator.py)</li>
-                                <li>the validation set (DataSets/HardTablesR1/Valid/gt,
+                                <li>the validation set (DataSets/HardTablesR1/Valid/gt/cta_gt.csv,
+                                    DataSets/HardTablesR1/Valid/gt/cta_gt_ancestor.json,
+                                    DataSets/HardTablesR1/Valid/gt/cta_gt_descendent.json,
                                     DataSets/HardTablesR1/Valid/tables)
                                 </li>
                                 <li>the testing set (DataSets/HardTablesR1/Test/tables,
-                                    DataSets/HardTablesR1/Test/target)
+                                    DataSets/HardTablesR1/Test/target/cta_gt.csv)
                                 </li>
                             </ul>
                         </dd>
@@ -466,7 +468,7 @@
                             One table is stored in one CSV file. Each line corresponds to a table row. The
                             first row may either be the table header or content. The target columns for annotation are
                             saved
-                            in a CSV file.
+                            in a CSV file. The CTA GTs' ancestors and descendents are saved in two json files, respectively.
                         </dd>
                     </dl>
 
@@ -613,11 +615,11 @@
                             <p>The dataset contains:</p>
                             <ul>
                                 <li>evaluator codes (CEA_WD_Evaluator.py)</li>
-                                <li>the validation set (DataSets/HardTablesR1/Valid/gt,
+                                <li>the validation set (DataSets/HardTablesR1/Valid/gt/cea_gt.csv,
                                     DataSets/HardTablesR1/Valid/tables)
                                 </li>
                                 <li>the testing set (DataSets/HardTablesR1/Test/tables,
-                                    DataSets/HardTablesR1/Test/target)
+                                    DataSets/HardTablesR1/Test/target/cea_target.csv)
                                 </li>
                             </ul>
                         </dd>
@@ -727,12 +729,12 @@
                         <dd class="col-sm-9">
                             <p>The dataset contains:</p>
                             <ul>
-                                <li>evaluator codes (CEA_WD_Evaluator.py, CTA_WD_Evaluator.py, CPA_WD_Evaluator.py))</li>
-                                <li>the validation set (DataSets/HardTablesR1/Valid/gt,
+                                <li>evaluator codes (CPA_WD_Evaluator.py))</li>
+                                <li>the validation set (DataSets/HardTablesR1/Valid/gt/cpa_gt.csv,
                                     DataSets/HardTablesR1/Valid/tables)
                                 </li>
                                 <li>the testing set (DataSets/HardTablesR1/Test/tables,
-                                    DataSets/HardTablesR1/Test/target)
+                                    DataSets/HardTablesR1/Test/target/cpa_target.csv)
                                 </li>
                             </ul>
                         </dd>
