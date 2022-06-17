@@ -36,13 +36,13 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"
                        href="#"
-                       id="navbarDropdown"
+                       id="navbarDropdownTracks"
                        role="button"
                        data-bs-toggle="dropdown"
                        aria-expanded="false">
                         Tracks
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownTracks">
                         <li>
                             <a class="dropdown-item" href="#accuracy-track">Accuracy Track</a>
                         </li>
@@ -51,6 +51,27 @@
                         </li>
                         <li>
                             <a class="dropdown-item" href="#artifacts-track">Artifacts Availability Badge</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       id="navbarDropdownRounds"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Datasets and Tasks
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownRounds">
+                        <li>
+                            <a class="dropdown-item" href="#round1">Round #1</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#round2">Round #2</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#round3">Round #3</a>
                         </li>
                     </ul>
                 </li>
@@ -152,12 +173,12 @@
                 tasks/tracks.
             </p>
 
-            <h2 class="title display-6 pt-5" id="tasks">
+            <h2 class="title display-6 pt-5" id="tracks">
                 <i class="bi bi-layout-wtf"></i>
                 Challenge Tracks
             </h2>
 
-            <h3 id="accuracy-track">Accuracy Track</h3>
+            <h3 class="pt-4" id="accuracy-track">Accuracy Track</h3>
 
             The evaluation of systems regarding accuracy is similar to prior
             versions of the SemTab.<br/>
@@ -216,7 +237,7 @@
                 <li><b>November 15</b>: Final version papers (via easychair).</li>
             </ul>
 
-            <h3 id="datasets-track">Datasets Track</h3>
+            <h3 class="pt-4" id="datasets-track">Datasets Track</h3>
 
             The data that table-to-Knowledge-Graph matching systems are trained
             and evaluated on, is critical for their accuracy and relevance.<br/>
@@ -277,7 +298,7 @@
                 <li><b>November 15</b>: Final version papers (via easychair).</li>
             </ul>
 
-            <h3 id="artifacts-track">Artifacts Availability Badge</h3>
+            <h3 class="pt-4" id="artifacts-track">Artifacts Availability Badge</h3>
 
             New this year is the Artifacts Availability Badge which is applicable
             to the Accuracy Track as well as the Datasets Track.<br/>
@@ -303,9 +324,14 @@
         <a href="https://www.aicrowd.com/challenges/semtab-2021" target="_blank">AICrowd platform</a> and the <a href="https://bitbucket.org/disco_unimib/stiltool/" target="_blank">STILTool system</a>.</p>
          -->
 
-            <h3>Datasets and tasks per round</h3>
 
-            <ul class="nav nav-tabs mb-3" id="tasks-tab" role="tablist">
+            <h2 class="title display-6 pt-5" id="tasks">
+                <i class="bi bi-table"></i>
+                Datasets and tasks per round
+            </h2>
+
+            <h3 class="pt-4" id="round1">Round #1</h3>
+            <ul class="nav nav-tabs mb-3" id="round1-tasks-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button
                             class="nav-link active"
@@ -317,7 +343,7 @@
                             aria-controls="round1-cta-wd-tab-pane"
                             aria-selected="true"
                     >
-                        Round 1 (CTA-WD)
+                        CTA-WD (Round #1)
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -331,7 +357,7 @@
                             aria-controls="round1-cea-wd-tab-pane"
                             aria-selected="false"
                     >
-                        Round 1 (CEA-WD)
+                        CEA-WD (Round #1)
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -345,41 +371,11 @@
                             aria-controls="round1-cpa-wd-tab-pane"
                             aria-selected="false"
                     >
-                        Round 1 (CPA-WD)
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button
-                            class="nav-link"
-                            id="round2-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#round2-tab-pane"
-                            type="button"
-                            role="tab"
-                            aria-controls="round2-tab-pane"
-                            aria-selected="false"
-                            disabled
-                    >
-                        Round 2
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button
-                            class="nav-link"
-                            id="round3-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#round3-tab-pane"
-                            type="button"
-                            role="tab"
-                            aria-controls="round3-tab-pane"
-                            aria-selected="false"
-                            disabled
-                    >
-                        Round 3
+                        CPA-WD (Round #1)
                     </button>
                 </li>
             </ul>
-            <div class="tab-content" id="tasks-tab-content">
+            <div class="tab-content" id="round1-tasks-tab-content">
                 <div
                         class="tab-pane fade show active"
                         id="round1-cta-wd-tab-pane"
@@ -411,7 +407,8 @@
                     <p>
                         The annotation can be a normal entity of Wikidata, with the prefix of
                         http://www.wikidata.org/entity/, such as http://www.wikidata.org/entity/Q8425. Each column
-                        should be annotated by <strong>at most one item</strong>. A perfect annotation is encouraged with a full score,
+                        should be annotated by <strong>at most one item</strong>. A perfect annotation is encouraged
+                        with a full score,
                         while an okay annotation can still get a part of the score. Example:
                         "KIN0LD6C","0","http://www.wikidata.org/entity/Q8425". Please use the prefix of
                         http://www.wikidata.org/entity/ instead of the URL prefix https://www.wikidata.org/wiki/.
@@ -445,7 +442,9 @@
                     <h5>Dataset</h5>
                     <dl class="row">
                         <dt class="col-sm-3">Link</dt>
-                        <dd class="col-sm-9"><a href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/HardTablesR1.tar.gz" target="_blank">Round #1 Dataset</a></dd>
+                        <dd class="col-sm-9"><a
+                                href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/HardTablesR1.tar.gz"
+                                target="_blank">Round #1 Dataset</a></dd>
 
                         <dt class="col-sm-3">Description</dt>
                         <dd class="col-sm-9">
@@ -468,7 +467,8 @@
                             One table is stored in one CSV file. Each line corresponds to a table row. The
                             first row may either be the table header or content. The target columns for annotation are
                             saved
-                            in a CSV file. The CTA GTs' ancestors and descendents are saved in two json files, respectively.
+                            in a CSV file. The CTA GTs' ancestors and descendents are saved in two json files,
+                            respectively.
                         </dd>
                     </dl>
 
@@ -533,7 +533,8 @@
 
                     <h5>Submission</h5>
                     Participants can test and develop their systems on the given ground truth (validation set).
-                    They can weekly <a href="#" target="_blank"> upload </a> their annotations corresponding to the targets (test set).
+                    They can weekly <a href="#" target="_blank"> upload </a> their annotations corresponding to the
+                    targets (test set).
 
                     <!-- <h4>Round 1</h4>
                       <ul>
@@ -608,7 +609,9 @@
                     <h5>Dataset</h5>
                     <dl class="row">
                         <dt class="col-sm-3">Link</dt>
-                        <dd class="col-sm-9"><a href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/HardTablesR1.tar.gz" target="_blank">Round #1 Dataset</a></dd>
+                        <dd class="col-sm-9"><a
+                                href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/HardTablesR1.tar.gz"
+                                target="_blank">Round #1 Dataset</a></dd>
 
                         <dt class="col-sm-3">Description</dt>
                         <dd class="col-sm-9">
@@ -662,7 +665,8 @@
 
                     <h5>Submission</h5>
                     Participants can test and develop their systems on the given ground truth (validation set).
-                    They can weekly <a href="#" target="_blank"> upload </a> their annotations corresponding to the targets (test set).
+                    They can weekly <a href="#" target="_blank"> upload </a> their annotations corresponding to the
+                    targets (test set).
                 </div>
                 <div
                         class="tab-pane fade"
@@ -723,7 +727,9 @@
                     <h5>Dataset</h5>
                     <dl class="row">
                         <dt class="col-sm-3">Link</dt>
-                        <dd class="col-sm-9"><a href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/HardTablesR1.tar.gz" target="_blank">Round #1 Dataset</a></dd>
+                        <dd class="col-sm-9"><a
+                                href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/HardTablesR1.tar.gz"
+                                target="_blank">Round #1 Dataset</a></dd>
 
                         <dt class="col-sm-3">Description</dt>
                         <dd class="col-sm-9">
@@ -776,26 +782,21 @@
 
                     <h5>Submission</h5>
                     Participants can test and develop their systems on the given ground truth (validation set).
-                    They can weekly <a href="#" target="_blank"> upload </a> their annotations corresponding to the targets (test set).
+                    They can weekly <a href="#" target="_blank"> upload </a> their annotations corresponding to the
+                    targets (test set).
                 </div>
-                <div
-                        class="tab-pane fade"
-                        id="round2-tab-pane"
-                        role="tabpanel"
-                        aria-labelledby="round2-tab"
-                        tabindex="0"
-                >
-                    TBD
-                </div>
-                <div
-                        class="tab-pane fade"
-                        id="round3-tab-pane"
-                        role="tabpanel"
-                        aria-labelledby="round3-tab"
-                        tabindex="0"
-                >
-                    TBD
-                </div>
+            </div>
+
+            <h3 class="pt-4" id="round2">Round #2</h3>
+            <div class="alert alert-primary d-flex align-items-center" role="alert">
+                <i class="bi bi-calendar-event" style="padding-right: 6px;"></i>
+                TBD (July 15 - August 14)
+            </div>
+
+            <h3 class="pt-4" id="round3">Round #3</h3>
+            <div class="alert alert-primary d-flex align-items-center" role="alert">
+                <i class="bi bi-calendar-event" style="padding-right: 6px;"></i>
+                TBD (September 15 - October 15)
             </div>
             <!--
         <h4>Round 2: </h4>
