@@ -791,11 +791,6 @@
             </div>
 
             <h3 class="pt-4" id="round2">Round #2</h3>
-            <div class="alert alert-warning d-flex align-items-center" role="alert">
-                <i class="bi bi-exclamation-diamond-fill" style="padding-right: 6px;"></i>
-                This round opens on July 18
-                <i class="bi bi-exclamation-diamond-fill" style="padding-left: 6px;"></i>
-            </div>
             <ul class="nav nav-tabs mb-3" id="round2-tasks-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button
@@ -1330,8 +1325,14 @@
                     <p>
                         The annotation can be a normal entity of Wikidata, with the prefix of
                         http://www.wikidata.org/entity/, such as http://www.wikidata.org/entity/Q8425. Each column
-                        should be annotated by <strong>at most one item</strong>. A perfect annotation is encouraged
-                        with a full score,
+                        should be annotated by <strong>at most one item</strong>.
+                    </p>
+                    <div class="alert alert-warning" role="alert">
+                        Use the '<strong>NIL</strong>' annotation when the column should be annotated with a concept
+                        that is <strong>NOT</strong> represented in the KG.
+                    </div>
+                    <p>
+                        A perfect annotation is encouraged with a full score,
                         while an okay annotation can still get a part of the score. Example:
                         "KIN0LD6C","0","http://www.wikidata.org/entity/Q8425". Please use the prefix of
                         http://www.wikidata.org/entity/ instead of the URL prefix https://www.wikidata.org/wiki/.
@@ -1374,13 +1375,13 @@
                             <p>The dataset contains:</p>
                             <ul>
                                 <li>evaluator codes (CTA_WD_Evaluator.py)</li>
-                                <li>the validation set (DataSets/ToughTablesR2/Valid/gt/cta_gt.csv,
-                                    DataSets/ToughTablesR2/Valid/gt/cta_gt_ancestor.json,
-                                    DataSets/ToughTablesR2/Valid/gt/cta_gt_descendent.json,
-                                    DataSets/ToughTablesR2/Valid/tables)
+                                <li>the validation set (DataSets/ToughTablesR2-WD/Valid/gt/cta_gt.csv,
+                                    DataSets/ToughTablesR2-WD/Valid/gt/cta_gt_ancestor.json,
+                                    DataSets/ToughTablesR2-WD/Valid/gt/cta_gt_descendent.json,
+                                    DataSets/ToughTablesR2-WD/Valid/tables)
                                 </li>
-                                <li>the testing set (DataSets/ToughTablesR2/Test/tables,
-                                    DataSets/ToughTablesR2/Test/target/cta_gt.csv)
+                                <li>the testing set (DataSets/ToughTablesR2-WD/Test/tables,
+                                    DataSets/ToughTablesR2-WD/Test/target/cta_gt.csv)
                                 </li>
                             </ul>
                         </dd>
@@ -1491,6 +1492,12 @@
                         id and a row id.
                         Namely one line should have four fields: "Table ID", "Row ID", "Column ID" and "Entity IRI".
                         Each cell should be annotated by <strong>at most one entity</strong>.
+                    </p>
+                    <div class="alert alert-warning" role="alert">
+                        Use the '<strong>NIL</strong>' annotation when the cell should be annotated with an entity
+                        that is <strong>NOT</strong> represented in the KG.
+                    </div>
+                    <p>
                         The headers should be excluded from the submission file.
                         Here is an example: "OHGI1JNY","32","1","http://www.wikidata.org/entity/Q5484".
                         Please use the prefix of http://www.wikidata.org/entity/ instead of
@@ -1532,11 +1539,11 @@
                             <p>The dataset contains:</p>
                             <ul>
                                 <li>evaluator codes (CEA_WD_Evaluator.py)</li>
-                                <li>the validation set (DataSets/ToughTablesR2/Valid/gt/cea_gt.csv,
-                                    DataSets/ToughTablesR2/Valid/tables)
+                                <li>the validation set (DataSets/ToughTablesR2-WD/Valid/gt/cea_gt.csv,
+                                    DataSets/ToughTablesR2-WD/Valid/tables)
                                 </li>
-                                <li>the testing set (DataSets/ToughTablesR2/Test/tables,
-                                    DataSets/ToughTablesR2/Test/target/cea_target.csv)
+                                <li>the testing set (DataSets/ToughTablesR2-WD/Test/tables,
+                                    DataSets/ToughTablesR2-WD/Test/target/cea_target.csv)
                                 </li>
                             </ul>
                         </dd>
@@ -1615,6 +1622,10 @@
                         should be annotated by <strong>at most one item</strong>.
                         <b>In Round #2 in SemTab 2022, only one annotation (perfect annotation) is scored.</b>
                     </p>
+                    <div class="alert alert-warning" role="alert">
+                        Use the '<strong>NIL</strong>' annotation when the column should be annotated with a concept
+                        that is <strong>NOT</strong> represented in the KG.
+                    </div>
                     <p>
                         The annotation should be represented by its full IRI, where the case is NOT sensitive. Each
                         submission should be a CSV file. Each line should include a column identified by table id and
@@ -1653,11 +1664,11 @@
                             <p>The dataset contains:</p>
                             <ul>
                                 <li>evaluator codes (CTA_DBP_Evaluator.py)</li>
-                                <li>the validation set (DataSets/ToughTablesR2/Valid/gt/cta_gt.csv,
-                                    DataSets/ToughTablesR2/Valid/tables)
+                                <li>the validation set (DataSets/ToughTablesR2-DBP/Valid/gt/cta_gt.csv,
+                                    DataSets/ToughTablesR2-DBP/Valid/tables)
                                 </li>
-                                <li>the testing set (DataSets/ToughTablesR2/Test/tables,
-                                    DataSets/ToughTablesR2/Test/target/cta_gt.csv)
+                                <li>the testing set (DataSets/ToughTablesR2-DBP/Test/tables,
+                                    DataSets/ToughTablesR2-DBP/Test/target/cta_gt.csv)
                                 </li>
                             </ul>
                         </dd>
@@ -1733,6 +1744,12 @@
                         id and a row id.
                         Namely one line should have four fields: "Table ID", "Row ID", "Column ID" and "Entity IRI".
                         Each cell should be annotated by <strong>at most one entity</strong>.
+                    </p>
+                    <div class="alert alert-warning" role="alert">
+                        Use the '<strong>NIL</strong>' annotation when the cell should be annotated with an entity
+                        that is <strong>NOT</strong> represented in the KG.
+                    </div>
+                    <p>
                         The headers should be excluded from the submission file.
                         Here is an example: "CTRL_WIKI_GEO_list_of_lakes_by_area","1","1","http://dbpedia.org/resource/Caspian_sea".
                         Please use the prefix of http://dbpedia.org/resource/ instead of
@@ -1774,11 +1791,11 @@
                             <p>The dataset contains:</p>
                             <ul>
                                 <li>evaluator codes (CEA_DBP_Evaluator.py)</li>
-                                <li>the validation set (DataSets/ToughTablesR2/Valid/gt/cea_gt.csv,
-                                    DataSets/ToughTablesR2/Valid/tables)
+                                <li>the validation set (DataSets/ToughTablesR2-DBP/Valid/gt/cea_gt.csv,
+                                    DataSets/ToughTablesR2-DBP/Valid/tables)
                                 </li>
-                                <li>the testing set (DataSets/ToughTablesR2/Test/tables,
-                                    DataSets/ToughTablesR2/Test/target/cea_target.csv)
+                                <li>the testing set (DataSets/ToughTablesR2-DBP/Test/tables,
+                                    DataSets/ToughTablesR2-DBP/Test/target/cea_target.csv)
                                 </li>
                             </ul>
                         </dd>
