@@ -1850,8 +1850,147 @@
             <h3 class="pt-4" id="round3">Round #3</h3>
             <div class="alert alert-primary d-flex align-items-center" role="alert">
                 <i class="bi bi-calendar-event" style="padding-right: 6px;"></i>
-                TBD (September 15 - October 15)
+                TBD (September 19 - October 15)
             </div>
+
+            <div
+                class="tab-pane fade"
+                id="round3-gt-cta-dbp-tab-pane"
+                role="tabpanel"
+                aria-labelledby="round3-gt-cta-dbp-tab"
+                tabindex="0"
+            >
+        <h4>Column Type Annotation by DBpedia and Schema.org (GT-CTA-DBP and GT-CTA-SCH)</h4>
+        <p>
+            This is a task of ISWC 2022 "Semantic Web Challenge on Tabular Data to Knowledge Graph
+            Matching".
+            It's to annotate an entity column (i.e., a column composed of entity mentions) in a table with
+            types from <strong>DBpedia</strong> (version:
+            <a href="http://downloads.dbpedia.org/wiki-archive/downloads-2016-10.html">2016-10</a>) and Schema.org
+        </p>
+        <h5>Task Description</h5>
+        <p>
+            The task is to annotate each of the given entity columns with properties of the DBpedia ontology and properties <strong>or</strong> classes from Schema.org.
+            Each column can be annotated by only one type (no ancestors and descendents are taken into account).
+        </p>
+        <p>
+            The annotation can be a normal property of DBpedia, with the prefix of
+            http://dbpedia.org/ontology/, such as http://dbpedia.org/ontology/Automobile. Each column
+            should be annotated by <strong>at most one item</strong>.
+            <b>In Round #3 in SemTab 2022, only one annotation (perfect annotation) is scored.</b>
+        </p>
+        <div class="alert alert-warning" role="alert">
+            Use the '<strong>NIL</strong>' annotation when the column should be annotated with a concept
+            that is <strong>NOT</strong> represented in the KG.
+        </div>
+        <p>
+            The annotation should be represented by its full IRI, where the case is NOT sensitive. Each
+            submission should be a CSV file. Each line should include a column identified by table id and
+            column id, and the column's annotation (a DBpedia class). It means one line should include three
+            fields: "Table ID", "Column ID" and "Annotation URI". The headers should be excluded from the
+            submission file.
+        </p>
+
+        Notes for datasets (1) and (2):
+        <ol>
+            <li>
+                Table ID is the filename of the table data, but does NOT include the extension (i.e. "csv").
+            </li>
+            <li>
+                Column ID is the position of the column in the input, starting from 0, i.e., first column's
+                ID is 0.
+            </li>
+            <li>
+                One submission file should have NO duplicate lines for each target column.
+            </li>
+            <li>
+                Annotations for columns out of the target columns are ignored.
+            </li>
+        </ol>
+
+
+        <h5>Dataset</h5>
+        <dl class="row">
+            <dt class="col-sm-3">Links</dt>
+            <dd class="col-sm-9"><a
+                href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/GitTables_SemTab_2022_dbpedia_dataset.zip"
+                target="_blank">(1) Round #3 GitTables DBpedia - Test Targets, Train Annotations, Evaluation Script</a>
+            </dd>
+            <dd class="col-sm-9"><a
+                href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/GitTables_SemTab_2022_schema_dataset.zip"
+                target="_blank">(2) Round #3 GitTables Schema.org - Test Targets, Train Annotations, Evaluation Script</a>
+            </dd>
+            <dd class="col-sm-9"><a
+                href="https://zenodo.org/record/7091019/files/GitTables_SemTab_2022_tables.zip?download=1"
+                target="_blank">(3) Round #3 GitTables Tables</a>
+            </dd>
+
+            <dt class="col-sm-3">Description</dt>
+            <dd class="col-sm-9">
+                <p>The datasets provide:</p>
+                <ul>
+                    <li>(1) The test targets are in "dbpedia_property_targets.csv" with table ID and target columns associated with properties from dbpedia.
+
+                        The train annotation files "dbpedia_property_train.csv" provides target table ID, target columns,
+                        and ground truth labels of associated ontology and URI.
+
+                        The evaluation code in "CTA_DBP_Evaluator.py" that can be used to evaluate a validation split of the train data against the ground truth of DBpedia annotations.
+                        It can be used through the CLI by calling python CTA_DBP_Evaluator.py --submission_filepath='<>' --ground_truth_filepath='<>'.
+                    </li>
+                    <li>(2) The test targets are in "schema_property_targets.csv" and "schema_class_targets.csv" with table ID and columns associated with properties and classes from schema.org.
+
+                        The train annotation files "schema_property_train.csv" and "schema_class_train.csv" provides target table ID, target columns,
+                        and ground truth labels of associated ontology and URI.
+
+                        The evaluation code in "CTA_SCH_Evaluator.py" that can be used to evaluate a validation split of the train data against the ground truth of Schema.org annotations.
+                        It can be used through the CLI by calling python CTA_SCH_Evaluator.py --submission_filepath='<>'.
+                    </li>
+                    <li>(3) All tables for training and testing (GitTables_SemTab_2022_tables.zip).
+
+                    One table is stored in one CSV file. Each line corresponds to a table row. The
+                    first row may either be the table header or content. The target columns for annotation are
+                    saved in a CSV file.
+
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+
+        <h5>Evaluation Criteria</h5>
+        <p>
+            Precision, Recall and F1 Score are calculated:
+
+            \[Precision = {{correct\_annotations \#} \over {submitted\_annotations \#}}\]
+
+            \[Recall = {{correct\_annotations \#} \over {ground\_truth\_annotations \#}}\]
+
+            \[F1 = {2 \times Precision \times Recall \over Precision + Recall}\]
+        </p>
+
+        Notes:
+        <ol>
+            <li>
+                # denotes the number.
+            </li>
+            <li>
+                \(F1\) is used as the primary score, and \(Precision\) is used as the secondary score.
+            </li>
+            <li>
+                One target column, one ground truth annotation, i.e., # ground truth annotations = # target
+                columns. The ground truth annotation has already covered all equivalent entities (e.g., wiki
+                page redirected entities); the ground truth is hit if one of its equivalent entities is hit.
+            </li>
+        </ol>
+
+        <h5>Submission</h5>
+
+        Participants can test and develop their systems on the given ground truth (validation set).
+        They can weekly <a href="https://bit.ly/semtab2022-round3" target="_blank"> upload </a> their
+        annotations corresponding to the
+        targets (test set).
+
+    </div>
+
 
             <br>
             
