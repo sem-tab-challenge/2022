@@ -1877,6 +1877,36 @@
                     GT-CTA-SCH (Round #3)
                 </button>
             </li>
+            <li class="nav-item" role="presentation">
+                <button
+                        class="nav-link"
+                        id="round3-biodivtab-cea-dbp-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#round3-biodivtab-cea-dbp-tab-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="round3-biodivtab-cea-dbp-pane"
+                        aria-selected="true"
+                >
+                    BiodivTab-CEA-DBP (Round #3)
+                </button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+                <button
+                        class="nav-link"
+                        id="round3-biodivtab-cta-dbp-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#round3-biodivtab-cta-dbp-tab-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="round3-biodivtab-cta-dbp-pane"
+                        aria-selected="true"
+                >
+                    BiodivTab-CTA-DBP (Round #3)
+                </button>
+            </li>
+
         </ul>
         <div class="alert alert-primary d-flex align-items-center" role="alert">
             <i class="bi bi-calendar-event" style="padding-right: 6px;"></i>
@@ -2140,6 +2170,222 @@
                 They can weekly <a href="https://bit.ly/semtab2022-round3" target="_blank"> upload </a> their
                 annotations corresponding to the targets (test set).
             </div>
+
+            <div
+                class="tab-pane fade"
+                id="round3-biodivtab-cea-dbp-tab-pane"
+                role="tabpanel"
+                aria-labelledby="round3-biodivtab-cea-dbp-tab"
+                tabindex="0"
+            >
+                <h4>Entity Type Annotation by DBpedia (BiodivTab-CEA-DBP)</h4>
+                <p>
+                    This is a task of ISWC 2022 "Semantic Web Challenge on Tabular Data to Knowledge Graph
+                    Matching".
+                    It's to annotate an entity cell in a table with
+                    instances from <strong>DBpedia</strong> entities <strong>http://dbpedia.org/resource/[ENTITY]</strong>.
+                </p>
+                <h5>Task Description</h5>
+                <p>
+                    The task is to annotate each of the given entity cells with instances from DBpedia.
+                    Each cell can be annotated by only one instance.
+                </p>
+                <div class="alert alert-warning" role="alert">
+                    Use the '<strong>NIL</strong>' annotation when a cell should be annotated with an entity
+                    that is <strong>NOT</strong> represented in the KG/DBpedia.
+                </div>
+                <p>
+                    The annotation should be represented by its full IRI, where the case is NOT sensitive. Each
+                    submission should be a CSV file. Each line should include a column identified by table id and
+                    column id, row id, and the column's annotation (a DBpedia instance).
+                    It means one line should include three fields: "Table ID", "Column ID" and "Annotation URI".
+                    The headers should be excluded from the submission file.
+                </p>
+
+                 <h5>Dataset</h5>
+                    <dl class="row">
+                        <dt class="col-sm-3">Link</dt>
+                        <dd class="col-sm-9"><a
+                                href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/BiodivTab_DBP_2022.zip"
+                                target="_blank">Round #3 BiodivTab (DBP) Dataset</a></dd>
+
+                        <dt class="col-sm-3">Description</dt>
+                        <dd class="col-sm-9">
+                            <p>The dataset contains:</p>
+                            <ul>
+                                <li>evaluator codes (evaluator/cea_evaluator.py)</li>
+                                <li>the validation set (val/tables,
+                                        val/targets/CEA_biodivtab_targets.csv,
+                                        val/gt/CEA_biodivtab_gt.csv,
+                                    )
+                                </li>
+                                <li>the testing set (test/tables,
+                                    test/targets/CEA_biodivtab_targets.csv,
+                                    test/gt/CEA_biodivtab_gt.csv,)
+                                </li>
+                            </ul>
+                        </dd>
+
+                        <dt class="col-sm-3">Format</dt>
+                        <dd class="col-sm-9">
+                            One table is stored in one CSV file. Each line corresponds to a table row. The first row may
+                            either be the table header or content. The target cells for annotation are saved in a CSV
+                            file.
+                        </dd>
+                    </dl>
+
+                   <h5>Evaluation Criteria</h5>
+                    <p>
+                        Precision, Recall and F1 Score are calculated:
+
+                        \[Precision = {{correct\_annotations \#} \over {submitted\_annotations \#}}\]
+
+                        \[Recall = {{correct\_annotations \#} \over {ground\_truth\_annotations \#}}\]
+
+                        \[F1 = {2 \times Precision \times Recall \over Precision + Recall}\]
+
+                    </p>
+
+                    Notes:
+
+                    <ol>
+                        <li>
+                            # denotes the number.
+                        </li>
+                        <li>
+                            \(F1\) is used as the primary score, and \(Precision\) is used as the secondary score.
+                        </li>
+                        <li>
+                            One target cell, one ground truth annotation, i.e., # ground truth annotations = # target
+                            cells. The ground truth annotation has already covered all equivalent entities (e.g., wiki
+                            page redirected entities); the ground truth is hit if one of its equivalent entities is hit.
+                        </li>
+                    </ol>
+
+                <h5>Submission</h5>
+
+                Make sure it is clear from the filename if the submission is for the property or the class subsets.
+                <br>
+                Participants can test and develop their systems on the given ground truth (validation set).
+                They can weekly <a href="#" target="_blank"> upload </a> their
+                annotations corresponding to the targets (test set).
+            </div>
+
+            <div
+                        class="tab-pane fade"
+                        id="round3-biodivtab-cta-dbp-tab-pane"
+                        role="tabpanel"
+                        aria-labelledby="round3-biodivtab-cta-dbp-tab"
+                        tabindex="0"
+                >
+                    <h4>Column Type Annotation by DBpedia (BiodivTab-CTA-DBP)</h4>
+                    <p>
+                        This is a task of ISWC 2022 "Semantic Web Challenge on Tabular Data to Knowledge Graph
+                        Matching".
+                        It's to annotate an entity column (i.e., a column composed of entity mentions) in a table with
+                        types from the <strong>DBpedia</strong> live version (19 Sep 2022)
+                    </p>
+                    <h5>Task Description</h5>
+                    <p>
+                        The task is to annotate each of the given entity columns with instances <strong>or</strong> classes of DBpedia ontology.
+                        Each column can be annotated by <strong>exactly one</strong> type
+                        the one that is as fine grained as possible and correct to all the column cells.
+                    </p>
+                    <div class="alert alert-warning" role="alert">
+                        Use the '<strong>NIL</strong>' annotation when the column should be annotated with a concept
+                        that is <strong>NOT</strong> represented in the KG/DBpedia.
+                    </div>
+                    <p>
+                        The annotation should be represented by its full IRI, where the case is NOT sensitive. Each
+                        submission should be a CSV file. Each line should include a column identified by table id and
+                        column id, and the column's annotation (a DBpedia instance/class). It means one line should include three
+                        fields: "Table ID", "Column ID" and "Annotation IRI". The headers should be excluded from the
+                        submission file.
+                    </p>
+
+                    Notes:
+                    <ol>
+                        <li>
+                            Table ID is the filename of the table data, but does NOT include the extension.
+                        </li>
+                        <li>
+                            Column ID is the position of the column in the input, starting from 0, i.e., first column's
+                            ID is 0.
+                        </li>
+                        <li>
+                            One submission file should have NO duplicate lines for each target column.
+                        </li>
+                        <li>
+                            Annotations for columns out of the target columns are ignored.
+                        </li>
+                    </ol>
+
+
+                    <h5>Dataset</h5>
+                    <dl class="row">
+                        <dt class="col-sm-3">Link</dt>
+                        <dd class="col-sm-9"><a
+                                href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/BiodivTab_DBP_2022.zip"
+                                target="_blank">Round #3 BiodivTab (DBP) Dataset</a></dd>
+
+                        <dt class="col-sm-3">Description</dt>
+                        <dd class="col-sm-9">
+                            <p>The dataset contains:</p>
+                            <ul>
+                                <li>evaluator codes (evaluator/cta_evaluator.py)</li>
+                                <li>the validation set (val/tables,
+                                    val/targets/CTA_biodivtab_targets.csv,
+                                    val/gt/CTA_biodivtab_gt.csv)
+                                </li>
+                                <li>the testing set (test/tables,
+                                    test/targets/gt/CTA_biodivtab_targets.csv,
+                                    gt/targets/gt/CTA_biodivtab_gt.csv,)
+                                </li>
+                            </ul>
+                        </dd>
+
+                        <dt class="col-sm-3">Format</dt>
+                        <dd class="col-sm-9">
+                            One table is stored in one CSV file. Each line corresponds to a table row. The
+                            first row may either be the table header or content. The target columns for annotation are
+                            saved in a CSV file.
+                        </dd>
+                    </dl>
+
+                    <h5>Evaluation Criteria</h5>
+                    <p>
+                        Precision, Recall and F1 Score are calculated:
+
+                        \[Precision = {{correct\_annotations \#} \over {submitted\_annotations \#}}\]
+
+                        \[Recall = {{correct\_annotations \#} \over {ground\_truth\_annotations \#}}\]
+
+                        \[F1 = {2 \times Precision \times Recall \over Precision + Recall}\]
+
+                    </p>
+
+                    Notes:
+
+                    <ol>
+                        <li>
+                            # denotes the number.
+                        </li>
+                        <li>
+                            \(F1\) is used as the primary score, and \(Precision\) is used as the secondary score.
+                        </li>
+                        <li>
+                            One target column, one ground truth annotation, i.e., # ground truth annotations = # target
+                            columns.
+                        </li>
+                    </ol>
+
+                    <h5>Submission</h5>
+                    Participants can test and develop their systems on the given ground truth (validation set).
+                    They can weekly <a href="#" target="_blank"> upload </a> their
+                    annotations corresponding to the
+                    targets (test set).
+                </div>
+
         </div>
 
 
