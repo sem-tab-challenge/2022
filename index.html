@@ -337,12 +337,12 @@
          -->
 
 
-            <h2 class="title display-6 pt-5" id="tasks">
-                <i class="bi bi-table"></i>
-                Datasets and tasks per round
-            </h2>
+        <h2 class="title display-6 pt-5" id="tasks">
+            <i class="bi bi-table"></i>
+            Datasets and tasks per round
+        </h2>
 
-            <h3 class="pt-4" id="round1">Round #1</h3>
+        <h3 class="pt-4" id="round1">Round #1</h3>
             <ul class="nav nav-tabs mb-3" id="round1-tasks-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button
@@ -1295,7 +1295,6 @@
                     They can weekly <a href="https://bit.ly/semtab2022-round2" target="_blank"> upload </a> their annotations corresponding to the
                     targets (test set).
 
-
                 </div>
                 <div
                         class="tab-pane fade"
@@ -1847,67 +1846,359 @@
                 </div>
             </div>
 
-            <h3 class="pt-4" id="round3">Round #3</h3>
-            <div class="alert alert-primary d-flex align-items-center" role="alert">
-                <i class="bi bi-calendar-event" style="padding-right: 6px;"></i>
-                TBD (September 15 - October 15)
+        
+        <h3 class="pt-4" id="round3">Round #3</h3>
+        <ul class="nav nav-tabs mb-3" id="round3-tasks-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button
+                        class="nav-link active"
+                        id="round3-gt-cta-dbp-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#round3-gt-cta-dbp-tab-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="round3-gt-cta-dbp-tab-pane"
+                        aria-selected="true"
+                >
+                    GT-CTA-DBP (Round #3)
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button
+                        class="nav-link"
+                        id="round3-gt-cta-sch-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#round3-gt-cta-sch-tab-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="round3-gt-cta-sch-tab-pane"
+                        aria-selected="true"
+                >
+                    GT-CTA-SCH (Round #3)
+                </button>
+            </li>
+        </ul>
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
+            <i class="bi bi-calendar-event" style="padding-right: 6px;"></i>
+            September 19 - October 15
+        </div>
+
+        <div class="tab-content" id="round3-tasks-tab-content">
+            <div
+                class="tab-pane fade"
+                id="round3-gt-cta-dbp-tab-pane"
+                role="tabpanel"
+                aria-labelledby="round3-gt-cta-dbp-tab"
+                tabindex="0"
+            >
+                <h4>Column Type Annotation by DBpedia (GT-CTA-DBP)</h4>
+                <p>
+                    This is a task of ISWC 2022 "Semantic Web Challenge on Tabular Data to Knowledge Graph
+                    Matching".
+                    It's to annotate an entity column (i.e., a column composed of entity mentions) in a table with
+                    types from <strong>DBpedia</strong> (version:
+                    <a href="http://downloads.dbpedia.org/wiki-archive/downloads-2016-10.html">2016-10</a>).
+                </p>
+                <h5>Task Description</h5>
+                <p>
+                    The task is to annotate each of the given entity columns with properties of the DBpedia ontology.
+                    Each column can be annotated by only one type (no ancestors and descendents are taken into account).
+                </p>
+                <p>
+                    The annotation can be a normal property of DBpedia, with the prefix of
+                    http://dbpedia.org/ontology/, such as http://dbpedia.org/ontology/Automobile. Each column
+                    should be annotated by <strong>at most one item</strong>.
+                    <b>In Round #3 in SemTab 2022, only one annotation (perfect annotation) is scored.</b>
+                </p>
+                <div class="alert alert-warning" role="alert">
+                    Use the '<strong>NIL</strong>' annotation when the column should be annotated with a concept
+                    that is <strong>NOT</strong> represented in the KG.
+                </div>
+                <p>
+                    The annotation should be represented by its full IRI, where the case is NOT sensitive. Each
+                    submission should be a CSV file. Each line should include a column identified by table id and
+                    column id, and the column's annotation (a DBpedia class). It means one line should include three
+                    fields: "Table ID", "Column ID" and "Annotation URI". The headers should be excluded from the
+                    submission file.
+                </p>
+
+                Notes for datasets:
+                <ol>
+                    <li>
+                        Table ID is the filename of the table data, but does NOT include the extension (i.e. "csv").
+                    </li>
+                    <li>
+                        Column ID is the position of the column in the input, starting from 0, i.e., first column's
+                        ID is 0.
+                    </li>
+                    <li>
+                        One submission file should have NO duplicate lines for each target column.
+                    </li>
+                    <li>
+                        Annotations for columns out of the target columns are ignored.
+                    </li>
+                </ol>
+
+
+                <h5>Dataset</h5>
+                <dl class="row">
+                    <dt class="col-sm-3">Links</dt>
+                    <dd class="col-sm-9"><a
+                        href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/GitTables_SemTab_2022_dbpedia_dataset.zip"
+                        target="_blank">(1) Round #3 GitTables DBpedia - Test Targets, Train Annotations, Evaluation Script</a>
+                    </dd>
+                    <dt class="col-sm-3"></dt>
+                    <dd class="col-sm-9"><a
+                        href="https://zenodo.org/record/7091019/files/GitTables_SemTab_2022_tables.zip?download=1"
+                        target="_blank">(2) Round #3 GitTables Tables</a>
+                    </dd>
+
+                    <dt class="col-sm-3">Description</dt>
+                    <dd class="col-sm-9">
+                        <p>The datasets provide:</p>
+                        <ul>
+                            <li>(1) The test targets are in "dbpedia_property_targets.csv" with table ID and target columns associated with properties from dbpedia.
+                                <br>
+                                The train annotation files "dbpedia_property_train.csv" provides target table ID, target columns,
+                                and ground truth labels of associated ontology and URI.
+                                <br>
+                                The evaluation code in "CTA_DBP_Evaluator.py" that can be used to evaluate a validation split of the train data against the ground truth of DBpedia annotations.
+                                It can be used through the CLI by calling python <code>CTA_DBP_Evaluator.py --submission_filepath='<>' --ground_truth_filepath='<>'</code>.
+                            </li>
+                            <li>(2) All tables for training and testing (GitTables_SemTab_2022_tables.zip).
+                            <br>
+                            One table is stored in one CSV file. Each line corresponds to a table row. The
+                            first row may either be the table header or content. The target columns for annotation are
+                            saved in a CSV file.
+                            <br>
+                            Tables for the DBpedia and Schema.org tasks are the same.
+
+                            </li>
+                        </ul>
+                    </dd>
+                </dl>
+
+                <h5>Evaluation Criteria</h5>
+                <p>
+                    Precision, Recall and F1 Score are calculated:
+
+                    \[Precision = {{correct\_annotations \#} \over {submitted\_annotations \#}}\]
+
+                    \[Recall = {{correct\_annotations \#} \over {ground\_truth\_annotations \#}}\]
+
+                    \[F1 = {2 \times Precision \times Recall \over Precision + Recall}\]
+                </p>
+
+                Notes:
+                <ol>
+                    <li>
+                        # denotes the number.
+                    </li>
+                    <li>
+                        \(F1\) is used as the primary score, and \(Precision\) is used as the secondary score.
+                    </li>
+                    <li>
+                        One target column, one ground truth annotation, i.e., # ground truth annotations = # target
+                        columns. The ground truth annotation has already covered all equivalent entities (e.g., wiki
+                        page redirected entities); the ground truth is hit if one of its equivalent entities is hit.
+                    </li>
+                </ol>
+
+                <h5>Submission</h5>
+
+                Participants can test and develop their systems on the given ground truth (validation set).
+                They can weekly <a href="https://bit.ly/semtab2022-round3" target="_blank"> upload </a> their
+                annotations corresponding to the
+                targets (test set).
+
             </div>
 
-            <br>
-            
-            <!--h2 class="pt-4" id="results">Testing Results</h2-->
-            <h2 class="title display-6" id="results">
-                <i class="bi bi-trophy"></i>
-                Testing Results
-            </h2>
-            
-                        
-            <div class="alert alert-primary d-flex align-items-center" role="alert">
-                <a href="https://docs.google.com/spreadsheets/d/1DgX4JX1aQkDNrRSW4l54yFT7zdnnI6EKanXvGoXww9I/edit?usp=sharing">Round
-                    #1</a>
+            <div
+                class="tab-pane fade"
+                id="round3-gt-cta-sch-tab-pane"
+                role="tabpanel"
+                aria-labelledby="round3-gt-cta-sch-tab"
+                tabindex="0"
+            >
+                <h4>Column Type Annotation by Schema.org (GT-CTA-SCH)</h4>
+                <p>
+                    This is a task of ISWC 2022 "Semantic Web Challenge on Tabular Data to Knowledge Graph
+                    Matching".
+                    It's to annotate an entity column (i.e., a column composed of entity mentions) in a table with
+                    types from <strong>Schema.org</strong> properties <strong>or</strong> classes.
+                </p>
+                <h5>Task Description</h5>
+                <p>
+                    The task is to annotate each of the given entity columns with properties or classes from Schema.org.
+                    Each column can be annotated by only one type (no ancestors and descendents are taken into account).
+                </p>
+                <p>
+                    The annotation can be a normal property/class of Schame.org, with the prefix of
+                    https://schema.org/, such as https://schema.org/identifier. Each column
+                    should be annotated by <strong>at most one item</strong>.
+                    <b>In Round #3 in SemTab 2022, only one annotation (perfect annotation) is scored.</b>
+                </p>
+                <div class="alert alert-warning" role="alert">
+                    Use the '<strong>NIL</strong>' annotation when the column should be annotated with a concept
+                    that is <strong>NOT</strong> represented in the KG.
+                </div>
+                <p>
+                    The annotation should be represented by its full IRI, where the case is NOT sensitive. Each
+                    submission should be a CSV file. Each line should include a column identified by table id and
+                    column id, and the column's annotation (a DBpedia class). It means one line should include three
+                    fields: "Table ID", "Column ID" and "Annotation URI". The headers should be excluded from the
+                    submission file.
+                </p>
+
+                Notes for datasets:
+                <ol>
+                    <li>
+                        Table ID is the filename of the table data, but does NOT include the extension (i.e. "csv").
+                    </li>
+                    <li>
+                        Column ID is the position of the column in the input, starting from 0, i.e., first column's
+                        ID is 0.
+                    </li>
+                    <li>
+                        One submission file should have NO duplicate lines for each target column.
+                    </li>
+                    <li>
+                        Annotations for columns out of the target columns are ignored.
+                    </li>
+                </ol>
+
+
+                <h5>Dataset</h5>
+                <dl class="row">
+                    <dt class="col-sm-3">Links</dt>
+                    <dd class="col-sm-9"><a
+                        href="https://github.com/sem-tab-challenge/2022/blob/main/datasets/GitTables_SemTab_2022_schema_dataset.zip"
+                        target="_blank">(1) Round #3 GitTables Schema.org - Test Targets, Train Annotations, Evaluation Script</a>
+                    </dd>
+                    <dt class="col-sm-3"></dt>
+                    <dd class="col-sm-9"><a
+                        href="https://zenodo.org/record/7091019/files/GitTables_SemTab_2022_tables.zip?download=1"
+                        target="_blank">(2) Round #3 GitTables Tables</a>
+                    </dd>
+
+                    <dt class="col-sm-3">Description</dt>
+                    <dd class="col-sm-9">
+                        <p>The datasets provide:</p>
+                        <ul>
+                            <li>(1) The test targets are in "schema_property_targets.csv" and "schema_class_targets.csv" with table ID and columns associated with properties and classes from schema.org.
+                                <br>
+                                The train annotation files "schema_property_train.csv" and "schema_class_train.csv" provides target table ID, target columns,
+                                and ground truth labels of associated ontology and URI.
+                                <br>
+                                The evaluation code in "CTA_SCH_Evaluator.py" that can be used to evaluate a validation split of the train data against the ground truth of Schema.org annotations.
+                                It can be used through the CLI by calling python <code>CTA_SCH_Evaluator.py --submission_filepath='<>' --ground_truth_filepath='<>'</code>.
+                            </li>
+                            <li>(2) All tables for training and testing (GitTables_SemTab_2022_tables.zip).
+                            <br>
+                            One table is stored in one CSV file. Each line corresponds to a table row. The
+                            first row may either be the table header or content. The target columns for annotation are
+                            saved in a CSV file.
+                            <br>
+                            Tables for Schema.org and DBpedia are the same.
+
+                            </li>
+                        </ul>
+                    </dd>
+                </dl>
+
+                <h5>Evaluation Criteria</h5>
+                <p>
+                    Precision, Recall and F1 Score are calculated:
+
+                    \[Precision = {{correct\_annotations \#} \over {submitted\_annotations \#}}\]
+
+                    \[Recall = {{correct\_annotations \#} \over {ground\_truth\_annotations \#}}\]
+
+                    \[F1 = {2 \times Precision \times Recall \over Precision + Recall}\]
+                </p>
+
+                Notes:
+                <ol>
+                    <li>
+                        # denotes the number.
+                    </li>
+                    <li>
+                        \(F1\) is used as the primary score, and \(Precision\) is used as the secondary score.
+                    </li>
+                    <li>
+                        One target column, one ground truth annotation, i.e., # ground truth annotations = # target
+                        columns. The ground truth annotation has already covered all equivalent entities (e.g., wiki
+                        page redirected entities); the ground truth is hit if one of its equivalent entities is hit.
+                    </li>
+                </ol>
+
+                <h5>Submission</h5>
+
+                Participants can test and develop their systems on the given ground truth (validation set).
+                They can weekly <a href="https://bit.ly/semtab2022-round3" target="_blank"> upload </a> their
+                annotations corresponding to the
+                targets (test set).
             </div>
-            
-            <div class="alert alert-primary d-flex align-items-center" role="alert">
-                <a href="https://docs.google.com/spreadsheets/d/16prYkaqGdvF0VpaYsmswe82_6kdOd0jNiIOjhp3EIOQ/edit?usp=sharing">Round #2</a>
-            </div>
+        </div>
 
-            <!--
-            <h4>Round 1</h4>
-            <ul>
-            <li><b>Knowledge Graphs:</b> DBPedia (version: <a href="http://downloads.dbpedia.org/wiki-archive/downloads-2016-10.html">2016-10</a>) and Wikidata (version: <a href="https://doi.org/10.5281/zenodo.6153449">20210828</a>)</li>
-            <li><b>Datasets and targets:</b> <a href="./data/tables_CTA_CEA_Round1.tar.gz" target="_blank">tables of CTA-DBP and CEA-DBP</a>, <a href="./data/CTA_DBP_Round1_Targets.csv" target="_blank">CTA-DBP targets</a>, <a href="./data/CEA_DBP_Round1_Targets.csv" target="_blank">CEA-DBP targets</a>, <a href="./data/tables_CTA_CEA_WD_Round1.tar.gz" target="_blank">tables of CTA-WD and CEA-WD</a>, <a href="./data/CTA_WD_Round1_Targets.csv">CTA-WD targets</a>, <a href="./data/CEA_WD_Round1_Targets.csv">CEA-WD targets</a>.</li>
-            <li><b>CTA-DBP Task</b>: Assigning a DBPedia semantic type (a DBpedia class as fine-grained as possible) to a column. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/column-type-annotation-by-dbpedia-cta-dbp">See AIcrowd page</a>.</li>
-            <li><b>CEA-DBP Task</b>: Matching a cell to a DBpedia entity. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/cell-entity-annotation-by-dbpedia-cea-dbp">See AIcrowd page</a>.</li>
-            <li><b>CTA-WD Task</b>: Assigning a Wikidata semantic type (a Wikidata entity as fine-grained as possible) to a column. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/column-type-annotation-by-wikidata-cta-wd">See AIcrowd page</a>.</li></li>
-            <li><b>CEA-WD Task</b>: Matching a cell to a Wikidata entity. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/cell-entity-annotation-by-wikidata-cea-wd">See AIcrowd page</a></li>
-            </ul>
 
-            <br>
 
-            <h4>Round 2: </h4>
-            <ul>
-            <li><b>Knowledge Graphs:</b> Wikidata (version: <a href="https://doi.org/10.5281/zenodo.6153449">20210828</a>)</li>
-            <li><b>BioTable Datasets and targets:</b> <a href="./data/BioTable_CTA_CEA_CPA_WD_Round2.tar.gz" target="_blank">tables of BioTable-CTA-WD, BioTable-CEA-WD and BioTable-CPA-WD</a>, <a href="./data/BioTable_CTA_WD_Round2_Targets.csv" target="_blank">BioTable-CTA-WD targets</a>, <a href="./data/BioTable_CEA_WD_Round2_Targets.csv" target="_blank">BioTable-CEA-WD targets</a>, <a href="./data/BioTable_CPA_WD_Round2_Targets.csv" target="_blank">BioTable-CPA-WD targets</a>.</li>
-            <li><b>BioTable-CTA-WD Task</b>: Assigning a Wikidata semantic type (a Wikidata entity as fine-grained as possible) to a column. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/biotable-column-type-annotation-by-wikidata-biotable-cta-wd">See AIcrowd page</a>.</li>
-            <li><b>BioTable-CEA-WD Task</b>: Assigning a Wikidata entity to a cell. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/biotable-cell-entity-annotation-by-wikidata-biotable-cea-wd">See AIcrowd page</a>.</li>
-            <li><b>BioTable-CPA-WD Task</b>: Assigning a Wikidata property to a column pair (order matters). <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/biotable-column-property-annotation-by-wikidata-biotable-cpa-wd">See AIcrowd page</a>.</li>
-            <li><b>AG (HardTable) Datasets and targets:</b> <a href="./data/HardTable_CTA_CEA_CPA_WD_Round2.tar.gz" target="_blank">tables of HardTable-CTA-WD, HardTable-CEA-WD and HardTable-CPA-WD</a>, <a href="./data/HardTable_CTA_WD_Round2_Targets.csv" target="_blank">HardTable-CTA-WD targets</a>, <a href="./data/HardTable_CEA_WD_Round2_Targets.csv" target="_blank">HardTable-CEA-WD targets</a>, <a href="./data/HardTable_CPA_WD_Round2_Targets.csv" target="_blank">HardTable-CPA-WD targets</a>.</li>
-            <li><b>HardTable-CTA-WD Task</b>: Assigning a Wikidata semantic type (a Wikidata entity as fine-grained as possible) to a column. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/hardtable-column-type-annotation-by-wikidata-hardtable-cta-wd">See AIcrowd page</a>.</li>
-            <li><b>HardTable-CEA-WD Task</b>: Assigning a Wikidata entity to a cell. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/hardtable-cell-entity-annotation-by-wikidata-hardtable-cea-wd">See AIcrowd page</a>.</li>
-            <li><b>HardTable-CPA-WD Task</b>: Assigning a Wikidata property to a column pair (order matters). <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/hardtable-column-property-annotation-by-wikidata-hardtable-cpa-wd">See AIcrowd page</a>.</li>
-            </ul>
 
-            <br>
+        <br>
+        
+        <!--h2 class="pt-4" id="results">Testing Results</h2-->
+        <h2 class="title display-6" id="results">
+            <i class="bi bi-trophy"></i>
+            Testing Results
+        </h2>
+        
+                    
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
+            <a href="https://docs.google.com/spreadsheets/d/1DgX4JX1aQkDNrRSW4l54yFT7zdnnI6EKanXvGoXww9I/edit?usp=sharing">Round
+                #1</a>
+        </div>
+        
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
+            <a href="https://docs.google.com/spreadsheets/d/16prYkaqGdvF0VpaYsmswe82_6kdOd0jNiIOjhp3EIOQ/edit?usp=sharing">Round #2</a>
+        </div>
 
-            <h4> Round 3: </h4>
-            <ul>
-            <li><b>Knowledge Graphs:</b> Schema.org (version: <a href="https://gittables.github.io/">May 2021</a>),  DBPedia (version: <a href="http://downloads.dbpedia.org/wiki-archive/downloads-2016-10.html">2016-10</a>), Wikidata (version: <a href="https://doi.org/10.5281/zenodo.6153449">20210828</a>)</li>
-            <li><b>BioDivTab Datasets and targets:</b> <a href="./data/BioDivTab_CTA_CEA_WD_Round3.tar.gz" target="_blank">tables of BioDivTab-CTA-WD and BioDivTab-CEA-WD</a>, <a href="./data/BioDivTab_CTA_WD_Round3_Targets.csv" target="_blank">BioDivTab-CTA-WD targets</a>, <a href="./data/BioDivTab_CEA_WD_Round3_Targets.csv" target="_blank">BioDivTab-CEA-WD targets</a>. (Knowledge Graph: "Live Edition" of Wikidata)</li>
-            <li><b>GitTables Datasets and targets:</b> <a href="data/GitTables_CTA_DBP_SCH_Round3.tar.gz" target="_blank">tables of GitTables-CTA-DBP and GitTables-CTA-SCH (one column by one Schema.org class such as schema:author and schema:URL)</a>, <a href="./data/GitTables_CTA_DBP_Round3_Targets.csv" target="_blank">GitTables-CTA-DBP targets</a>, <a href="./data/GitTables_CTA_DBP_Round3_Labels.csv">GitTables-CTA-DBP labels (including DBpedia properties)</a>, <a href="data/GitTables_CTA_SCH_Round3_Targets.csv" target="_blank">GitTables-CTA-SCH targets</a>, <a href="./data/GitTables_CTA_SCH_Round3_Labels.csv">GitTables-CTA-SCH labels (including properties and types from Schema.org)</a> </li>
-            <li><b>AG (HardTable) R3 Datasets and targets:</b> <a href="./data/HardTablesR3_CTA_CEA_CPA_WD_Round3.tar.gz" target="_blank">tables of HardTablesR3-CTA-WD, HardTablesR3-CEA-WD and HardTablesR3-CPA-WD</a>, <a href="./data/HardTablesR3_CTA_WD_Round3_Targets.csv" target="_blank">HardTablesR3-CTA-WD targets</a>, <a href="./data/HardTablesR3_CEA_WD_Round3_Targets.csv" target="_blank">HardTablesR3-CEA-WD targets</a>, <a href="./data/HardTablesR3_CPA_WD_Round3_Targets.csv" target="_blank">HardTablesR3-CPA-WD targets</a>. (Knowledge Graph: Wikidata (version: <a href="https://dumps.wikimedia.org/wikidatawiki/entities/20210823/">20210823</a>))</li>
-            </ul> -->
+        <!--
+        <h4>Round 1</h4>
+        <ul>
+        <li><b>Knowledge Graphs:</b> DBPedia (version: <a href="http://downloads.dbpedia.org/wiki-archive/downloads-2016-10.html">2016-10</a>) and Wikidata (version: <a href="https://doi.org/10.5281/zenodo.6153449">20210828</a>)</li>
+        <li><b>Datasets and targets:</b> <a href="./data/tables_CTA_CEA_Round1.tar.gz" target="_blank">tables of CTA-DBP and CEA-DBP</a>, <a href="./data/CTA_DBP_Round1_Targets.csv" target="_blank">CTA-DBP targets</a>, <a href="./data/CEA_DBP_Round1_Targets.csv" target="_blank">CEA-DBP targets</a>, <a href="./data/tables_CTA_CEA_WD_Round1.tar.gz" target="_blank">tables of CTA-WD and CEA-WD</a>, <a href="./data/CTA_WD_Round1_Targets.csv">CTA-WD targets</a>, <a href="./data/CEA_WD_Round1_Targets.csv">CEA-WD targets</a>.</li>
+        <li><b>CTA-DBP Task</b>: Assigning a DBPedia semantic type (a DBpedia class as fine-grained as possible) to a column. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/column-type-annotation-by-dbpedia-cta-dbp">See AIcrowd page</a>.</li>
+        <li><b>CEA-DBP Task</b>: Matching a cell to a DBpedia entity. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/cell-entity-annotation-by-dbpedia-cea-dbp">See AIcrowd page</a>.</li>
+        <li><b>CTA-WD Task</b>: Assigning a Wikidata semantic type (a Wikidata entity as fine-grained as possible) to a column. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/column-type-annotation-by-wikidata-cta-wd">See AIcrowd page</a>.</li></li>
+        <li><b>CEA-WD Task</b>: Matching a cell to a Wikidata entity. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/cell-entity-annotation-by-wikidata-cea-wd">See AIcrowd page</a></li>
+        </ul>
 
-            <!-- <h3>Usability Track</h3>
+        <br>
+
+        <h4>Round 2: </h4>
+        <ul>
+        <li><b>Knowledge Graphs:</b> Wikidata (version: <a href="https://doi.org/10.5281/zenodo.6153449">20210828</a>)</li>
+        <li><b>BioTable Datasets and targets:</b> <a href="./data/BioTable_CTA_CEA_CPA_WD_Round2.tar.gz" target="_blank">tables of BioTable-CTA-WD, BioTable-CEA-WD and BioTable-CPA-WD</a>, <a href="./data/BioTable_CTA_WD_Round2_Targets.csv" target="_blank">BioTable-CTA-WD targets</a>, <a href="./data/BioTable_CEA_WD_Round2_Targets.csv" target="_blank">BioTable-CEA-WD targets</a>, <a href="./data/BioTable_CPA_WD_Round2_Targets.csv" target="_blank">BioTable-CPA-WD targets</a>.</li>
+        <li><b>BioTable-CTA-WD Task</b>: Assigning a Wikidata semantic type (a Wikidata entity as fine-grained as possible) to a column. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/biotable-column-type-annotation-by-wikidata-biotable-cta-wd">See AIcrowd page</a>.</li>
+        <li><b>BioTable-CEA-WD Task</b>: Assigning a Wikidata entity to a cell. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/biotable-cell-entity-annotation-by-wikidata-biotable-cea-wd">See AIcrowd page</a>.</li>
+        <li><b>BioTable-CPA-WD Task</b>: Assigning a Wikidata property to a column pair (order matters). <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/biotable-column-property-annotation-by-wikidata-biotable-cpa-wd">See AIcrowd page</a>.</li>
+        <li><b>AG (HardTable) Datasets and targets:</b> <a href="./data/HardTable_CTA_CEA_CPA_WD_Round2.tar.gz" target="_blank">tables of HardTable-CTA-WD, HardTable-CEA-WD and HardTable-CPA-WD</a>, <a href="./data/HardTable_CTA_WD_Round2_Targets.csv" target="_blank">HardTable-CTA-WD targets</a>, <a href="./data/HardTable_CEA_WD_Round2_Targets.csv" target="_blank">HardTable-CEA-WD targets</a>, <a href="./data/HardTable_CPA_WD_Round2_Targets.csv" target="_blank">HardTable-CPA-WD targets</a>.</li>
+        <li><b>HardTable-CTA-WD Task</b>: Assigning a Wikidata semantic type (a Wikidata entity as fine-grained as possible) to a column. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/hardtable-column-type-annotation-by-wikidata-hardtable-cta-wd">See AIcrowd page</a>.</li>
+        <li><b>HardTable-CEA-WD Task</b>: Assigning a Wikidata entity to a cell. <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/hardtable-cell-entity-annotation-by-wikidata-hardtable-cea-wd">See AIcrowd page</a>.</li>
+        <li><b>HardTable-CPA-WD Task</b>: Assigning a Wikidata property to a column pair (order matters). <a href="https://www.aicrowd.com/challenges/semtab-2021/problems/hardtable-column-property-annotation-by-wikidata-hardtable-cpa-wd">See AIcrowd page</a>.</li>
+        </ul>
+
+        <br>
+
+        <h4> Round 3: </h4>
+        <ul>
+        <li><b>Knowledge Graphs:</b> Schema.org (version: <a href="https://gittables.github.io/">May 2021</a>),  DBPedia (version: <a href="http://downloads.dbpedia.org/wiki-archive/downloads-2016-10.html">2016-10</a>), Wikidata (version: <a href="https://doi.org/10.5281/zenodo.6153449">20210828</a>)</li>
+        <li><b>BioDivTab Datasets and targets:</b> <a href="./data/BioDivTab_CTA_CEA_WD_Round3.tar.gz" target="_blank">tables of BioDivTab-CTA-WD and BioDivTab-CEA-WD</a>, <a href="./data/BioDivTab_CTA_WD_Round3_Targets.csv" target="_blank">BioDivTab-CTA-WD targets</a>, <a href="./data/BioDivTab_CEA_WD_Round3_Targets.csv" target="_blank">BioDivTab-CEA-WD targets</a>. (Knowledge Graph: "Live Edition" of Wikidata)</li>
+        <li><b>GitTables Datasets and targets:</b> <a href="data/GitTables_CTA_DBP_SCH_Round3.tar.gz" target="_blank">tables of GitTables-CTA-DBP and GitTables-CTA-SCH (one column by one Schema.org class such as schema:author and schema:URL)</a>, <a href="./data/GitTables_CTA_DBP_Round3_Targets.csv" target="_blank">GitTables-CTA-DBP targets</a>, <a href="./data/GitTables_CTA_DBP_Round3_Labels.csv">GitTables-CTA-DBP labels (including DBpedia properties)</a>, <a href="data/GitTables_CTA_SCH_Round3_Targets.csv" target="_blank">GitTables-CTA-SCH targets</a>, <a href="./data/GitTables_CTA_SCH_Round3_Labels.csv">GitTables-CTA-SCH labels (including properties and types from Schema.org)</a> </li>
+        <li><b>AG (HardTable) R3 Datasets and targets:</b> <a href="./data/HardTablesR3_CTA_CEA_CPA_WD_Round3.tar.gz" target="_blank">tables of HardTablesR3-CTA-WD, HardTablesR3-CEA-WD and HardTablesR3-CPA-WD</a>, <a href="./data/HardTablesR3_CTA_WD_Round3_Targets.csv" target="_blank">HardTablesR3-CTA-WD targets</a>, <a href="./data/HardTablesR3_CEA_WD_Round3_Targets.csv" target="_blank">HardTablesR3-CEA-WD targets</a>, <a href="./data/HardTablesR3_CPA_WD_Round3_Targets.csv" target="_blank">HardTablesR3-CPA-WD targets</a>. (Knowledge Graph: Wikidata (version: <a href="https://dumps.wikimedia.org/wikidatawiki/entities/20210823/">20210823</a>))</li>
+        </ul> -->
+
+        <!-- <h3>Usability Track</h3>
         This new track addresses a pain point in the community regarding a lack of publicly available easy-to-use and generic solution that will address the needs of a variety of applications and settings.
         We will devise a clear scoring mechanism to rank every participant's solution in terms of several usability criteria as judged by a review panel, for example:
         <ol>
